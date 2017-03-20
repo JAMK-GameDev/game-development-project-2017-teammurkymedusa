@@ -12,18 +12,30 @@ public class FlightPhysics : MonoBehaviour
     [Tooltip("Affects strength of lift coefficient. No known range for values.")]
     public float Lift;
 
-    [Tooltip("Amount of thrust. Values in range 0.0 .. 1.0"), Range(0.0f, 1.0f)]
-    public float Throttle;
-
     // Hidden variables, not all used
     private float liftCoefficient;
     private float AoA;
     private float tas;
     private float altitude;
     private float liftForce;
+    private float throttle;
 
     // GameObject stuff
     private Rigidbody2D rb;
+
+    //[Tooltip("Amount of thrust. Values in range 0.0 .. 1.0"), Range(0.0f, 1.0f)]
+    public float Throttle
+    {
+        get
+        {
+            return throttle;
+        }
+
+        set
+        {
+            throttle = value;
+        }
+    }
 
     // Use this for initialization
     void Start()

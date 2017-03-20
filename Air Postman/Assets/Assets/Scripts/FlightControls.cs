@@ -20,6 +20,6 @@ public class FlightControls : MonoBehaviour
         float throttle = Input.GetAxis("Vertical");
 
         rb.AddTorque(pitch * -1, ForceMode2D.Force);
-        fp.Throttle = (throttle + 1) / 2;
+        //fp.Throttle = (throttle + 1) / 2;
     }
 }
