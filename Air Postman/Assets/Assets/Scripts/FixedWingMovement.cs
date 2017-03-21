@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlightPhysics : MonoBehaviour
+public class FixedWingMovement : MonoBehaviour
 {
     // Plane specific variables
     [Tooltip("Maximum plane thurst. Values in range 0 .. +")]
     public float MaxThrust;
-    //[Tooltip("Not actually used, see 'Rigidbody2D'->'linear drag' instead")]
-    //public float Drag;
     [Tooltip("Affects strength of lift coefficient. No known range for values.")]
     public float Lift;
     [Tooltip("Amount of thrust. Values in range 0.0 .. 1.0"), Range(0.0f, 1.0f)]
@@ -16,7 +14,7 @@ public class FlightPhysics : MonoBehaviour
     [Tooltip("Amount of force to raise or lower the nose. Values in range -1 .. 1"), Range(-1.0f, 1.0f)]
     public float pitchTorque;
 
-    // Hidden variables, not all used
+    // Hidden variables, not all used yet
     private float liftCoefficient;
     private float AoA;
     private float tas;
@@ -36,7 +34,7 @@ public class FlightPhysics : MonoBehaviour
     public float PitchTorque
     {
         get { return pitchTorque; }
-        set { PitchTorque = pitchTorque; }
+        set { PitchTorque = value; }
     }
 
     // Use this for initialization
