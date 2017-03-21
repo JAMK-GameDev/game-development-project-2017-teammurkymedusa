@@ -10,13 +10,13 @@ The unique of the game is (I have no idea(Toni)). Consequently, the main thing i
 
 Planes can eventually carry guns shoot birds. Pew Pew. However, if air police sees you shooting protected birds, you will get nasty penalty.
 
-###List of people in our team
+### List of people in our team
   - Programmers: Atro and Matias
   - Designer: Ronnie
   - Artist: Markus and Mia
   - Project manager: Tulathorn
 
-###Development goal:
+### Development goal:
   - Basic flying mechanics
        - Artists: Level graphics
   - Basic Weather
