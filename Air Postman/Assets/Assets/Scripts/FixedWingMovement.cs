@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlightPhysics : MonoBehaviour
+public class FixedWingMovement : MonoBehaviour
 {
     // Plane specific variables
     [Tooltip("Maximum plane thurst. Values in range 0 .. +")]
     public float MaxThrust;
-    [Tooltip("Not actually used, see 'Rigidbody2D'->'linear drag' instead")]
-    public float Drag;
     [Tooltip("Affects strength of lift coefficient. No known range for values.")]
     public float Lift;
+    [Tooltip("Amount of thrust. Values in range 0.0 .. 1.0"), Range(0.0f, 1.0f)]
+    public float throttle;
+    [Tooltip("Amount of force to raise or lower the nose. Values in range -1 .. 1"), Range(-1.0f, 1.0f)]
+    public float pitchTorque;
 
-    // Hidden variables, not all used
+    // Hidden variables, not all used yet
     private float liftCoefficient;
     private float AoA;
     private float tas;
     private float altitude;
     private float liftForce;
-    private float throttle;
 
     // GameObject stuff
     private Rigidbody2D rb;
@@ -26,15 +27,14 @@ public class FlightPhysics : MonoBehaviour
     //[Tooltip("Amount of thrust. Values in range 0.0 .. 1.0"), Range(0.0f, 1.0f)]
     public float Throttle
     {
-        get
-        {
-            return throttle;
-        }
+        get { return throttle; }
+        set { throttle = value; }
+    }
 
-        set
-        {
-            throttle = value;
-        }
+    public float PitchTorque
+    {
+        get { return pitchTorque; }
+        set { pitchTorque = value; }
     }
 
     // Use this for initialization
@@ -42,6 +42,16 @@ public class FlightPhysics : MonoBehaviour
     {
         Throttle = 0;
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        float pitch = Input.GetAxis("Horizontal");
+        float throttle = Input.GetAxis("Vertical");
+
+        if (pitch != 0.0f) { pitchTorque = pitch; }
+
+        rb.AddTorque(pitchTorque, ForceMode2D.Force);
     }
 
     void FixedUpdate()
@@ -65,8 +75,5 @@ public class FlightPhysics : MonoBehaviour
         }
         liftForce = Lift * liftCoefficient * rb.velocity.x;
         rb.AddRelativeForce(Vector2.left * liftForce, ForceMode2D.Force);
-        print("Lift coefficient: " + liftCoefficient);
-        print("Lift force: " + liftForce);
-        print("Angle of Attack: " + (AoA - 70.0f));
     }
 }
