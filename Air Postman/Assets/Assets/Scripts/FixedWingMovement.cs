@@ -34,7 +34,7 @@ public class FixedWingMovement : MonoBehaviour
     public float PitchTorque
     {
         get { return pitchTorque; }
-        set { PitchTorque = value; }
+        set { pitchTorque = value; }
     }
 
     // Use this for initialization
