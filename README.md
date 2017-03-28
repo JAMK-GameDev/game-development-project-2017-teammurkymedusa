@@ -1,7 +1,7 @@
 # game-development-project-2017-teammurkymedusa
 ### Welcome to our github pages
 
-### Game name:
+### Game name: Air postman
 
 ### Basic information
 The main mission is to fly around the world to delivery goods. You have to start the game with ultralight plane. Furthermore, you have no money at start but you can still fly from airfield to next. Therefore, you haul some cargo from airfield to next to gather some cash to buy better planes and achieve your goal of flying around the world, eventually. This is an arcade game. 
