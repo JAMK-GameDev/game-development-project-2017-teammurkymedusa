@@ -29,7 +29,7 @@ public class LevelGenerator : MonoBehaviour {
     GameObject StartingPointObject;
     GameObject EndPoint;
 
-    
+    LevelEventManager eventManager;
 	// Use this for initialization
 	void Start () {
         int difficultyMod = defineDifficultyMod(Difficulty);
@@ -40,13 +40,33 @@ public class LevelGenerator : MonoBehaviour {
 
         //Mins and maxes for events
 
-        WindBurstsAmount[0] = pseudoRandom.Next(Difficulty, difficultyMod);
+        //Param init
+        int param1,param2 = 0;
+
+        if(Difficulty > difficultyMod)
+        {
+            param2 = Difficulty;
+            param1 = difficultyMod;
+        }
+        else
+        {
+            param2 = difficultyMod;
+            param1 = Difficulty;
+        }
+        //WindBurstsAmount[0] = pseudoRandom.Next(Difficulty, difficultyMod);
+        //WindBurstsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
+        WindBurstsAmount[0] = pseudoRandom.Next(param1, param2);
         WindBurstsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
 
-        BirdsAmount[0] = pseudoRandom.Next(Difficulty, difficultyMod);
+        //BirdsAmount[0] = pseudoRandom.Next(Difficulty, difficultyMod);
+        //BirdsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
+
+        BirdsAmount[0] = pseudoRandom.Next(param1, param2);
         BirdsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
         //pseudoRandom.Next();
         GroundArray = new GameObject[LevelLength,LandHeight];
+
+        eventManager = gameObject.GetComponent<LevelEventManager>();
         generateMap();
 	}
 	
@@ -79,6 +99,8 @@ public class LevelGenerator : MonoBehaviour {
     {
         Debug.Log("Generating ground");
         generateGround();
+        //generateSky();
+        eventPopulation();
     }
 
     private void generateGround()
@@ -149,6 +171,14 @@ public class LevelGenerator : MonoBehaviour {
     /// </summary>
     private void eventPopulation()
     {
+        gameObject.GetComponent<LevelEventManager>().PlaceEvents(
+            pseudoRandom.Next(BirdsAmount[0], BirdsAmount[1]), 
+            pseudoRandom.Next(WindBurstsAmount[0], WindBurstsAmount[1])
+            );
+    }
 
+    public System.Random getPseudoRandom()
+    {
+        return pseudoRandom;
     }
 }
