@@ -158,10 +158,8 @@ public class LevelGenerator : MonoBehaviour {
     private void generateSky()
     {
         //Skybox Generation
-        GameObject SkyboxCamera = GameObject.Find("Skybox Camera");
-        Camera camera = SkyboxCamera.GetComponent<Camera>();
         GameObject BGImage = GameObject.Find("Background Image");
-        GUITexture image = BGImage.GetComponent<GUITexture>();
+        SpriteRenderer image = BGImage.GetComponent<SpriteRenderer>();
 
         //image.texture = 
 

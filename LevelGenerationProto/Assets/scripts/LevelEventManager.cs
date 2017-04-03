@@ -49,7 +49,7 @@ public class LevelEventManager : MonoBehaviour {
             switch (eventType)
             {
                 case 0:
-                    generateBird(false, 3f);
+                    generateBird(false, 3f, i);
                     break;
 
                 case 1:
@@ -66,10 +66,16 @@ public class LevelEventManager : MonoBehaviour {
     /// </summary>
     /// <param name="dynamite"></param>
     /// <param name="speed"></param>
-    private void generateBird(bool dynamite, float speed)
+    private void generateBird(bool dynamite, float speed, int genNum)
     {
         lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
         GameObject bird = Instantiate(ProtoBird, lastGenerationPoint, Quaternion.identity, sky.transform);
+        if (dynamite)
+        {
+            bird.name = "TntBird" + genNum;
+        }
+        else
+            bird.name = "Bird" + genNum;
         //Set bird speed and dynamite
 
     }
