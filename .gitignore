@@ -31,7 +31,7 @@ local.properties
 #################
 ## Rider
 #################
-.idea/
+*/.idea/
 
 #################
 ## Visual Studio
