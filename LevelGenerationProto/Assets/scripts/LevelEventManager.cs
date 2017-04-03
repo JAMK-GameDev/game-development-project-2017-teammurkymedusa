@@ -21,7 +21,7 @@ public class LevelEventManager : MonoBehaviour {
 
     float minEventDistance = 15;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         sky = gameObject.GetComponent<LevelGenerator>().Sky;
         difficulty = gameObject.GetComponent<LevelGenerator>().Difficulty;
         pseudoRandom = gameObject.GetComponent<LevelGenerator>().getPseudoRandom();
