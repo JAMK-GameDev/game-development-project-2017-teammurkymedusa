@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class EnemyScript : MonoBehaviour
 {
-
+    public bool isWind;
     private bool hasSpawn;
 
     private Collider2D colliderComponent;
@@ -16,7 +16,10 @@ public class EnemyScript : MonoBehaviour
     {
 
         colliderComponent = GetComponent<Collider2D>();
-        rendererComponent = GetComponent<SpriteRenderer>();
+        if (!isWind)
+        {
+            rendererComponent = GetComponent<SpriteRenderer>();
+        }
     }
 
     // Use this for initialization
@@ -56,5 +59,9 @@ public class EnemyScript : MonoBehaviour
         rendererComponent.enabled = true;
 
         //Enable other scripts and components
+        if (isWind)
+        {
+            gameObject.GetComponent<WindEvent>().OnSpawn();
+        }
     }
 }

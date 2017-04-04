@@ -37,15 +37,33 @@ public class LevelEventManager : MonoBehaviour {
 	void Update () {
 		
 	}
-
     public void PlaceEvents(int birdAmount, int windAmount)
+    {
+        for (int i = 0; i < birdAmount + windAmount; i++)
+        {
+            System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
+            int eventType = rnd.Next(0,1);
+            switch (eventType)
+            {
+                case 0:
+                    generateBird(false, 3f, i);
+                    break;
+                case 1:
+                    generateWind(Vector3.up, 2, new Vector2(100, 100), i);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    public void PlaceEventsOld(int birdAmount, int windAmount)
     {
         int eventAmount = birdAmount + windAmount;
         System.Random rnd = new System.Random(1);
         for (int i = 0; i < eventAmount; i++)
         {
             int eventType = rnd.Next(0, 1);
-
+            Debug.Log("Randomized event type: " + eventType);
             switch (eventType)
             {
                 case 0:
@@ -53,7 +71,7 @@ public class LevelEventManager : MonoBehaviour {
                     break;
 
                 case 1:
-                    generateWind(10f);
+                    generateWind(Vector3.up,10f,new Vector2(100,100), i);
                     break;
                 default:
                     break;
@@ -62,10 +80,11 @@ public class LevelEventManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// TODO
+    /// 
     /// </summary>
     /// <param name="dynamite"></param>
     /// <param name="speed"></param>
+    /// <param name="genNum"></param>
     private void generateBird(bool dynamite, float speed, int genNum)
     {
         lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
@@ -80,13 +99,20 @@ public class LevelEventManager : MonoBehaviour {
 
     }
     /// <summary>
-    /// TODO
+    /// 
     /// </summary>
-    /// <param name="strength"></param>
-    private void generateWind(float strength)
+    /// <param name="force"></param>
+    /// <param name="Magnitude"></param>
+    /// <param name="area"></param>
+    /// <param name="genNum"></param>
+    private void generateWind(Vector3 force, float Magnitude, Vector2 area, int genNum)
     {
         lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
         GameObject wind = Instantiate(ProtoWind, lastGenerationPoint, Quaternion.identity, sky.transform);
         //Set wind strength
+        wind.GetComponent<WindEvent>().ForceVector = force;
+        wind.GetComponent<WindEvent>().Magnitude = Magnitude;
+        wind.GetComponent<WindEvent>().AoE = area;
+        wind.name = "WindEvent" + genNum;
     }
 }
