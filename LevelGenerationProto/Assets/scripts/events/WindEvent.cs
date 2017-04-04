@@ -14,15 +14,11 @@ public class WindEvent : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         myCol = gameObject.GetComponent<BoxCollider2D>();
-        AoE[0] = 100f; // x
-        AoE[1] = 100f; // y
-	}
-	
-    //Custom event, fired when object enters to players view
-    public void OnSpawn()
-    {
         myCol.size = AoE;
+        //AoE[0] = 10f; // x
+        //AoE[1] = 20f; // y, 20 is good value - it covers the whole play area
     }
+	
     void OnTriggerStay(Collider player)
     {
         if (player.attachedRigidbody)
