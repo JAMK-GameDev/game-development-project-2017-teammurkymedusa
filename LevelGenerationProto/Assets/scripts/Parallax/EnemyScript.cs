@@ -16,10 +16,7 @@ public class EnemyScript : MonoBehaviour
     {
 
         colliderComponent = GetComponent<Collider2D>();
-        if (!isWind)
-        {
-            rendererComponent = GetComponent<SpriteRenderer>();
-        }
+        rendererComponent = GetComponent<SpriteRenderer>();
     }
 
     // Use this for initialization
@@ -54,14 +51,10 @@ public class EnemyScript : MonoBehaviour
 
     private void Spawn()
     {
-        //Debug.Log(gameObject.name + " Spawned");
+        Debug.Log(gameObject.name + " Spawned");
         colliderComponent.enabled = true;
         rendererComponent.enabled = true;
 
         //Enable other scripts and components
-        if (isWind)
-        {
-            gameObject.GetComponent<WindEvent>().OnSpawn();
-        }
     }
 }

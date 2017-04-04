@@ -39,39 +39,20 @@ public class LevelEventManager : MonoBehaviour {
 	}
     public void PlaceEvents(int birdAmount, int windAmount)
     {
+        Debug.Log("Generating " + birdAmount + windAmount + " events");
         for (int i = 0; i < birdAmount + windAmount; i++)
         {
-            System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-            int eventType = rnd.Next(0,1);
-            switch (eventType)
-            {
-                case 0:
-                    generateBird(false, 3f, i);
-                    break;
-                case 1:
-                    generateWind(Vector3.up, 2, new Vector2(100, 100), i);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    public void PlaceEventsOld(int birdAmount, int windAmount)
-    {
-        int eventAmount = birdAmount + windAmount;
-        System.Random rnd = new System.Random(1);
-        for (int i = 0; i < eventAmount; i++)
-        {
-            int eventType = rnd.Next(0, 1);
+            int eventType = Random.Range(0,2);
             Debug.Log("Randomized event type: " + eventType);
             switch (eventType)
             {
                 case 0:
+                    Debug.Log("Creating Bird " + i);
                     generateBird(false, 3f, i);
                     break;
-
                 case 1:
-                    generateWind(Vector3.up,10f,new Vector2(100,100), i);
+                    Debug.Log("Creating Wind " + i);
+                    generateWind(Vector3.up, 2, new Vector2(10, 30), i);
                     break;
                 default:
                     break;
