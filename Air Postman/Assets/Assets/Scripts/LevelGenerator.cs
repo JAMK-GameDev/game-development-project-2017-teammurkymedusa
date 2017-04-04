@@ -22,6 +22,8 @@ public class LevelGenerator : MonoBehaviour {
     public GameObject Level;
     public GameObject Sky;
     public GameObject Ground;
+
+    public Vector2 startingPoint;
     //Private variables
     GameObject[,] GroundArray;
     GameObject[] Events; //Stores random events such as wind and birds
@@ -106,7 +108,7 @@ public class LevelGenerator : MonoBehaviour {
     private void generateGround()
     {
         bool enableMultiLayer = true;
-        Vector2 startingPoint = new Vector2(0, 25);
+
         startingPoint.y -= GroundMaterial.GetComponent<SpriteRenderer>().bounds.size.y;
 
         //Do we need more than one layer of ground tiles?
@@ -126,7 +128,7 @@ public class LevelGenerator : MonoBehaviour {
                     Debug.Log("Generating tile " + x + "," + y);
                     if (y != 0)
                     {
-                        genPos.y += GroundMaterial.GetComponent<SpriteRenderer>().bounds.size.y;
+                        startingPoint.y -= GroundMaterial.GetComponent<SpriteRenderer>().bounds.size.y;
                     }
 
                     GroundArray[x, y] = (GameObject)Instantiate(GroundMaterial, genPos, Quaternion.identity, Ground.transform);
@@ -156,10 +158,8 @@ public class LevelGenerator : MonoBehaviour {
     private void generateSky()
     {
         //Skybox Generation
-        GameObject SkyboxCamera = GameObject.Find("Skybox Camera");
-        Camera camera = SkyboxCamera.GetComponent<Camera>();
         GameObject BGImage = GameObject.Find("Background Image");
-        GUITexture image = BGImage.GetComponent<GUITexture>();
+        SpriteRenderer image = BGImage.GetComponent<SpriteRenderer>();
 
         //image.texture = 
 

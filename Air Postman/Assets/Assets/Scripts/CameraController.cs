@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
         //if (x < MinPos + MinPos * 0.4f) x -= fixedMin * 0.4f;
         //float x = oldVec.x;
         Vector3 NewVec = new Vector3(x,y, oldVec.z-10f);
-        Debug.Log("New X" + (range * (1f -Plane.throttle) - fixedMin));
+        //Debug.Log("New X" + (range * (1f -Plane.throttle) - fixedMin));
         Cam.transform.position = NewVec;
     }
 }
