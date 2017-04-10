@@ -11,6 +11,7 @@ public class LevelEventManager : MonoBehaviour {
     public int minDistance;
 
     public int ScreenLowestCoord;
+    public int BottomScreenBuffer;
 
     public Camera camera;
     //Private variables
@@ -93,7 +94,8 @@ public class LevelEventManager : MonoBehaviour {
     {
         int ScreenHeight = (int) (camera.orthographicSize * 2f);
         lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
-        float BirdHeight = localRandom.Next(ScreenLowestCoord, ScreenLowestCoord + ScreenHeight);
+        lastGenerationPoint.y = BirdEventBase.transform.position.y;
+        float BirdHeight = localRandom.Next(ScreenLowestCoord+BottomScreenBuffer , ScreenLowestCoord + ScreenHeight);
 
         GameObject bird = Instantiate(BirdEventBase, lastGenerationPoint, Quaternion.identity, sky.transform);
         if (dynamite)

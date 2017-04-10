@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
 
@@ -10,7 +11,7 @@ public class CameraController : MonoBehaviour
     public float MinPos;
     public float MaxPos;
     public float StartPos;
-    public FixedWingMovement Plane;
+    public PlaneControls Plane;
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class CameraController : MonoBehaviour
         }
         range = MinPos + MaxPos;
         float y = 25f;
-        float x = oldVec.x + (range * (1.35f -Plane.throttle) - fixedMin);
+        float x = oldVec.x + (range * (1.35f - Plane.GetSpeed()) - fixedMin);
         //if (x < MinPos + MinPos * 0.4f) x -= fixedMin * 0.4f;
         //float x = oldVec.x;
         Vector3 NewVec = new Vector3(x,y, oldVec.z-10f);

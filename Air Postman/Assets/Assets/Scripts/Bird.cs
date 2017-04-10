@@ -16,5 +16,16 @@ namespace Assets.Scripts
             oldPos.x -= speed * Time.deltaTime;
             transform.position = oldPos;
         }
+
+        void OnCollisionEnter2D(Collision2D col)
+        {
+            Debug.Log("Collision with bird!");
+            if (col.gameObject.tag.Equals("Player"))
+            {
+                Destroy(gameObject);
+                Destroy(col.gameObject);
+            }
+            GameManager.instance.ActivateDeath();
+        }
     }
 }
