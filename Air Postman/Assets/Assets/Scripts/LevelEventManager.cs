@@ -7,6 +7,7 @@ public class LevelEventManager : MonoBehaviour {
 
     public GameObject BirdEventBase;
     public GameObject ProtoWind;
+    public GameObject ProtoTurbulence;
 
     public int minDistance;
 
@@ -47,7 +48,7 @@ public class LevelEventManager : MonoBehaviour {
         for (int i = 0; i < birdAmount + windAmount; i++)
         {
             System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-            int eventType = rnd.Next(0,2);
+            int eventType = rnd.Next(0,4);
             switch (eventType)
             {
                 case 0:
@@ -56,27 +57,11 @@ public class LevelEventManager : MonoBehaviour {
                 case 1:
                     generateWind(Vector3.up, 2, new Vector2(100, 100), i);
                     break;
-                default:
+                case 2:
+                    //TODO
                     break;
-            }
-        }
-    }
-    public void PlaceEventsOld(int birdAmount, int windAmount)
-    {
-        int eventAmount = birdAmount + windAmount;
-        System.Random rnd = new System.Random(1);
-        for (int i = 0; i < eventAmount; i++)
-        {
-            int eventType = rnd.Next(0, 1);
-            Debug.Log("Randomized event type: " + eventType);
-            switch (eventType)
-            {
-                case 0:
-                    generateBird(false, 3f, i);
-                    break;
-
-                case 1:
-                    generateWind(Vector3.up,10f,new Vector2(100,100), i);
+                case 3:
+                    generateTurbulence(i);
                     break;
                 default:
                     break;
@@ -125,5 +110,16 @@ public class LevelEventManager : MonoBehaviour {
         wind.GetComponent<WindEvent>().AoE = area;
         wind.name = "WindEvent" + genNum;
         //wind.GetComponent<WindEvent>().OnSpawn();
+    }
+
+    private void generateTurbulence(int genNum)
+    {
+        int ScreenHeight = (int)(camera.orthographicSize * 2f);
+        lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
+        lastGenerationPoint.y = ProtoTurbulence.transform.position.y;
+        float turbulence = localRandom.Next(ScreenLowestCoord + BottomScreenBuffer, ScreenLowestCoord + ScreenHeight);
+
+        GameObject Turbulence = Instantiate(ProtoTurbulence, lastGenerationPoint, Quaternion.identity, sky.transform);
+        Turbulence.name = "Turbulence" + genNum;
     }
 }
