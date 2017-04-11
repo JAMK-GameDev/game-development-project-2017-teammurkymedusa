@@ -51,7 +51,7 @@ namespace Assets.Scripts
                 ThrottleSlider.value = this.throttle;
             } else if (throttle < 0.0f && throttle < lastInputThrottleValue)
             {
-                this.throttle -= throttle*-1 ;
+                this.throttle -= throttle * -1;
                 if (this.throttle < 0) this.throttle = 0;
                 ThrottleSlider.value = this.throttle;
             }
@@ -79,7 +79,20 @@ namespace Assets.Scripts
                 _rb.gravityScale = 0;
             }
 
-            _rb.AddTorque(PitchTorque, ForceMode2D.Force);
+            /*else
+            {
+                if (_rb.angularVelocity > 0.01f)
+                {
+                    _rb.angularVelocity /= 2;
+                }
+                else
+                {
+                    _rb.angularVelocity = 0;
+                }
+
+            }*/
+
+            _rb.AddTorque(PitchTorque * Maneuverability, ForceMode2D.Force);
         }
 
         private void FixedUpdate()

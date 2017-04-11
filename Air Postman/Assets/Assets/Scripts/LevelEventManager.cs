@@ -6,6 +6,7 @@ using UnityEngine;
 public class LevelEventManager : MonoBehaviour {
 
     public GameObject BirdEventBase;
+    public GameObject WhirlwindEventBase;
     public GameObject ProtoWind;
 
     public int minDistance;
@@ -44,17 +45,19 @@ public class LevelEventManager : MonoBehaviour {
 	}
     public void PlaceEvents(int birdAmount, int windAmount)
     {
+
         for (int i = 0; i < birdAmount + windAmount; i++)
         {
-            System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-            int eventType = rnd.Next(0,1);
+            //System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
+            int eventType = Random.Range(0,2);
+            Debug.Log("Randomized event type: " + eventType.ToString());
             switch (eventType)
             {
                 case 0:
                     generateBird(false, 3f, i);
                     break;
                 case 1:
-                    generateWind(Vector3.up, 2, new Vector2(100, 100), i);
+                    generateWhirlwind(i);
                     break;
                 default:
                     break;
@@ -67,8 +70,8 @@ public class LevelEventManager : MonoBehaviour {
         System.Random rnd = new System.Random(1);
         for (int i = 0; i < eventAmount; i++)
         {
-            int eventType = rnd.Next(0, 1);
-            Debug.Log("Randomized event type: " + eventType);
+            int eventType = rnd.Next(0, 3);
+            Debug.Log("Randomized event type: " + eventType.ToString());
             switch (eventType)
             {
                 case 0:
@@ -76,7 +79,10 @@ public class LevelEventManager : MonoBehaviour {
                     break;
 
                 case 1:
-                    generateWind(Vector3.up,10f,new Vector2(100,100), i);
+                    //generateWind(Vector3.up, 10f, new Vector2(100, 100), i);
+                    break;
+                case 2:
+                    generateWhirlwind(i);
                     break;
                 default:
                     break;
@@ -105,7 +111,7 @@ public class LevelEventManager : MonoBehaviour {
         else
             bird.name = "Bird" + genNum;
         //Set bird speed and dynamite
-        bird.GetComponent<BirdEvent>().SetParameters(camera, 3f, BirdHeight, 1);
+        bird.GetComponent<BirdEvent>().SetParameters(camera, 7.5f, BirdHeight, 1);
 
     }
     /// <summary>
@@ -124,5 +130,15 @@ public class LevelEventManager : MonoBehaviour {
         wind.GetComponent<WindEvent>().Magnitude = Magnitude;
         wind.GetComponent<WindEvent>().AoE = area;
         wind.name = "WindEvent" + genNum;
+    }
+
+    private void generateWhirlwind(int genNum)
+    {
+        lastGenerationPoint.x += minDistance + localRandom.Next(1,difficulty + 10);
+        lastGenerationPoint.y = BirdEventBase.transform.position.y;
+        GameObject whirlwind = Instantiate(WhirlwindEventBase, lastGenerationPoint, Quaternion.identity, sky.transform);
+        int ScreenHeight = (int) (camera.orthographicSize * 2f);
+        float WwHeight = localRandom.Next(ScreenLowestCoord+BottomScreenBuffer , ScreenLowestCoord + ScreenHeight);
+        whirlwind.GetComponent<WhirlwindEvent>().SetParameters(WwHeight, 25f, 1.5f, 5f);
     }
 }
