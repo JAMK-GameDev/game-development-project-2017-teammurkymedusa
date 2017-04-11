@@ -35,7 +35,7 @@ public class LevelEventManager : MonoBehaviour {
         birdBounds = BirdEventBase.GetComponent<SpriteRenderer>();
         windBounds = ProtoWind.GetComponent<SpriteRenderer>();
 
-        lastGenerationPoint = new Vector2(minDistance, 0);
+        lastGenerationPoint = new Vector3(minDistance, 0, 0);
 	}
 	
 	// Update is called once per frame
@@ -47,7 +47,7 @@ public class LevelEventManager : MonoBehaviour {
         for (int i = 0; i < birdAmount + windAmount; i++)
         {
             System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-            int eventType = rnd.Next(0,1);
+            int eventType = 1; // rnd.Next(0,2);
             switch (eventType)
             {
                 case 0:
@@ -124,5 +124,6 @@ public class LevelEventManager : MonoBehaviour {
         wind.GetComponent<WindEvent>().Magnitude = Magnitude;
         wind.GetComponent<WindEvent>().AoE = area;
         wind.name = "WindEvent" + genNum;
+        //wind.GetComponent<WindEvent>().OnSpawn();
     }
 }
