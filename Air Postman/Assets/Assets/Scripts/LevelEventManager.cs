@@ -8,6 +8,7 @@ public class LevelEventManager : MonoBehaviour {
     public GameObject BirdEventBase;
     public GameObject WhirlwindEventBase;
     public GameObject ProtoWind;
+    public GameObject ProtoTurbulence;
 
     public int minDistance;
 
@@ -36,7 +37,7 @@ public class LevelEventManager : MonoBehaviour {
         birdBounds = BirdEventBase.GetComponent<SpriteRenderer>();
         windBounds = ProtoWind.GetComponent<SpriteRenderer>();
 
-        lastGenerationPoint = new Vector2(minDistance, 0);
+        lastGenerationPoint = new Vector3(minDistance, 0, 0);
 	}
 	
 	// Update is called once per frame
@@ -49,7 +50,7 @@ public class LevelEventManager : MonoBehaviour {
         for (int i = 0; i < birdAmount + windAmount; i++)
         {
             //System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-            int eventType = Random.Range(0,2);
+            int eventType = Random.Range(0,4);
             Debug.Log("Randomized event type: " + eventType.ToString());
             switch (eventType)
             {
@@ -83,6 +84,9 @@ public class LevelEventManager : MonoBehaviour {
                     break;
                 case 2:
                     generateWhirlwind(i);
+                    break;
+                case 3:
+                    generateTurbulence(i);
                     break;
                 default:
                     break;
@@ -129,7 +133,19 @@ public class LevelEventManager : MonoBehaviour {
         wind.GetComponent<WindEvent>().ForceVector = force;
         wind.GetComponent<WindEvent>().Magnitude = Magnitude;
         wind.GetComponent<WindEvent>().AoE = area;
-        wind.name = "WindEvent" + genNum;
+        wind.name = "WindEvent" + genNum.ToString();
+        //wind.GetComponent<WindEvent>().OnSpawn();
+    }
+
+    private void generateTurbulence(int genNum)
+    {
+        int ScreenHeight = (int)(camera.orthographicSize * 2f);
+        lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
+        lastGenerationPoint.y = ProtoTurbulence.transform.position.y;
+        float turbulence = localRandom.Next(ScreenLowestCoord + BottomScreenBuffer, ScreenLowestCoord + ScreenHeight);
+
+        GameObject Turbulence = Instantiate(ProtoTurbulence, lastGenerationPoint, Quaternion.identity, sky.transform);
+        Turbulence.name = "Turbulence" + genNum.ToString();
     }
 
     private void generateWhirlwind(int genNum)
