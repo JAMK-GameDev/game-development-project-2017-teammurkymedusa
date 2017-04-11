@@ -23,18 +23,25 @@ public class WindEvent : MonoBehaviour {
     {
         myCol.size = AoE;
     }
-    void OnTriggerStay(Collider player)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (player.attachedRigidbody)
+        if (other.gameObject.tag.Equals("Player"))
         {
-            player.attachedRigidbody.AddForce(ForceVector * Magnitude);
+            Debug.Log("Player hit " + gameObject.name);
+            if (other.attachedRigidbody)
+            {
+                other.attachedRigidbody.AddForce(ForceVector * Magnitude);
+            } 
         }
     }
 
     //This is used for destroying wind
-    void OnTriggerExit(Collider player)
+    void OnTriggerExit2D(Collider2D other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            Destroy(gameObject); 
+        }
         //gameObject.SetActive(false);
     }
 }
