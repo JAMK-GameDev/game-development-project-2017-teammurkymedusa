@@ -47,7 +47,7 @@ public class LevelEventManager : MonoBehaviour {
         for (int i = 0; i < birdAmount + windAmount; i++)
         {
             System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-            int eventType = 1; // rnd.Next(0,2);
+            int eventType = rnd.Next(0,2);
             switch (eventType)
             {
                 case 0:
