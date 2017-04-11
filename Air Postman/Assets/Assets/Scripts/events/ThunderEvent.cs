@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThunderEvent : MonoBehaviour
 {
     public float EventSpawnPoint;
-    public float Duration;
+    public float EventDespawnPoint;
     public GameObject ThunderFlashObject;
 
 	void Start()
