@@ -41,6 +41,9 @@ public class ThunderFlash : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D coll)
     {
-
+        if (coll.gameObject.CompareTag("Player") && sr.enabled)
+        {
+            GameManager.instance.ActivateDeath();
+        }
     }
 }
