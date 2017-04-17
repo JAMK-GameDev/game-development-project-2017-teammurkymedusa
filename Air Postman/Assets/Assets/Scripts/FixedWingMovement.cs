@@ -51,6 +51,7 @@ public class FixedWingMovement : MonoBehaviour
 
         if (pitch != 0.0f) { pitchTorque = pitch; }
 
+
         rb.AddTorque(pitchTorque, ForceMode2D.Force);
     }
 
