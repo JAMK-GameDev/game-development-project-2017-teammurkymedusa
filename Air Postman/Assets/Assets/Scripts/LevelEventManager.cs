@@ -6,11 +6,14 @@ using UnityEngine;
 public class LevelEventManager : MonoBehaviour {
 
     public GameObject BirdEventBase;
+    public GameObject WhirlwindEventBase;
     public GameObject ProtoWind;
+    public GameObject ProtoTurbulence;
 
     public int minDistance;
 
     public int ScreenLowestCoord;
+    public int BottomScreenBuffer;
 
     public Camera camera;
     //Private variables
@@ -34,7 +37,7 @@ public class LevelEventManager : MonoBehaviour {
         birdBounds = BirdEventBase.GetComponent<SpriteRenderer>();
         windBounds = ProtoWind.GetComponent<SpriteRenderer>();
 
-        lastGenerationPoint = new Vector2(minDistance, 0);
+        lastGenerationPoint = new Vector3(minDistance, 0, 0);
 	}
 	
 	// Update is called once per frame
@@ -43,17 +46,19 @@ public class LevelEventManager : MonoBehaviour {
 	}
     public void PlaceEvents(int birdAmount, int windAmount)
     {
+
         for (int i = 0; i < birdAmount + windAmount; i++)
         {
-            System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-            int eventType = rnd.Next(0,1);
+            //System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
+            int eventType = Random.Range(0,4);
+            Debug.Log("Randomized event type: " + eventType.ToString());
             switch (eventType)
             {
                 case 0:
                     generateBird(false, 3f, i);
                     break;
                 case 1:
-                    generateWind(Vector3.up, 2, new Vector2(100, 100), i);
+                    generateWhirlwind(i);
                     break;
                 default:
                     break;
@@ -66,8 +71,8 @@ public class LevelEventManager : MonoBehaviour {
         System.Random rnd = new System.Random(1);
         for (int i = 0; i < eventAmount; i++)
         {
-            int eventType = rnd.Next(0, 1);
-            Debug.Log("Randomized event type: " + eventType);
+            int eventType = rnd.Next(0, 3);
+            Debug.Log("Randomized event type: " + eventType.ToString());
             switch (eventType)
             {
                 case 0:
@@ -75,7 +80,13 @@ public class LevelEventManager : MonoBehaviour {
                     break;
 
                 case 1:
-                    generateWind(Vector3.up,10f,new Vector2(100,100), i);
+                    //generateWind(Vector3.up, 10f, new Vector2(100, 100), i);
+                    break;
+                case 2:
+                    generateWhirlwind(i);
+                    break;
+                case 3:
+                    generateTurbulence(i);
                     break;
                 default:
                     break;
@@ -93,7 +104,8 @@ public class LevelEventManager : MonoBehaviour {
     {
         int ScreenHeight = (int) (camera.orthographicSize * 2f);
         lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
-        float BirdHeight = localRandom.Next(ScreenLowestCoord, ScreenLowestCoord + ScreenHeight);
+        lastGenerationPoint.y = BirdEventBase.transform.position.y;
+        float BirdHeight = localRandom.Next(ScreenLowestCoord+BottomScreenBuffer , ScreenLowestCoord + ScreenHeight);
 
         GameObject bird = Instantiate(BirdEventBase, lastGenerationPoint, Quaternion.identity, sky.transform);
         if (dynamite)
@@ -103,7 +115,7 @@ public class LevelEventManager : MonoBehaviour {
         else
             bird.name = "Bird" + genNum;
         //Set bird speed and dynamite
-        bird.GetComponent<BirdEvent>().SetParameters(camera, 3f, BirdHeight, 1);
+        bird.GetComponent<BirdEvent>().SetParameters(camera, 7.5f, BirdHeight, 1);
 
     }
     /// <summary>
@@ -121,6 +133,28 @@ public class LevelEventManager : MonoBehaviour {
         wind.GetComponent<WindEvent>().ForceVector = force;
         wind.GetComponent<WindEvent>().Magnitude = Magnitude;
         wind.GetComponent<WindEvent>().AoE = area;
-        wind.name = "WindEvent" + genNum;
+        wind.name = "WindEvent" + genNum.ToString();
+        //wind.GetComponent<WindEvent>().OnSpawn();
+    }
+
+    private void generateTurbulence(int genNum)
+    {
+        int ScreenHeight = (int)(camera.orthographicSize * 2f);
+        lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
+        lastGenerationPoint.y = ProtoTurbulence.transform.position.y;
+        float turbulence = localRandom.Next(ScreenLowestCoord + BottomScreenBuffer, ScreenLowestCoord + ScreenHeight);
+
+        GameObject Turbulence = Instantiate(ProtoTurbulence, lastGenerationPoint, Quaternion.identity, sky.transform);
+        Turbulence.name = "Turbulence" + genNum.ToString();
+    }
+
+    private void generateWhirlwind(int genNum)
+    {
+        lastGenerationPoint.x += minDistance + localRandom.Next(1,difficulty + 10);
+        lastGenerationPoint.y = BirdEventBase.transform.position.y;
+        GameObject whirlwind = Instantiate(WhirlwindEventBase, lastGenerationPoint, Quaternion.identity, sky.transform);
+        int ScreenHeight = (int) (camera.orthographicSize * 2f);
+        float WwHeight = localRandom.Next(ScreenLowestCoord+BottomScreenBuffer , ScreenLowestCoord + ScreenHeight);
+        whirlwind.GetComponent<WhirlwindEvent>().SetParameters(WwHeight, 25f, 1.5f, 5f);
     }
 }
