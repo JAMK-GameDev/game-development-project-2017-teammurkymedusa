@@ -43,6 +43,7 @@ public class ThunderFlash : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Player") && sr.enabled)
         {
+            print("Flash collision!");
             GameManager.instance.ActivateDeath();
         }
     }
