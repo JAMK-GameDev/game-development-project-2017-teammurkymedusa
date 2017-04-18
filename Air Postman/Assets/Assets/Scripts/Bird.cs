@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
     public class Bird: MonoBehaviour
     {
         float speed;
+        public AudioSource[] Explosions;
 
         public void SetSpeed(float speed)
         {
@@ -22,10 +24,20 @@ namespace Assets.Scripts
             Debug.Log("Collision with bird!");
             if (col.gameObject.tag.Equals("Player"))
             {
-                Destroy(gameObject);
+                //gameObject.SetActive(false);
                 Destroy(col.gameObject);
+                int startExplosion = Random.Range(0, Explosions.Length);
+                Explosions[startExplosion].Play();
+                StartCoroutine(SecondBoom(1 - startExplosion));
+                GameManager.instance.ActivateDeath();
             }
-            GameManager.instance.ActivateDeath();
+        }
+
+        IEnumerator SecondBoom(int other)
+        {
+            yield return new WaitForSeconds(.15f);
+            Explosions[other].Play();
+            Destroy(gameObject);
         }
     }
 }
