@@ -19,13 +19,17 @@ public class LevelGenerator : MonoBehaviour {
     public int LevelLength;
 
     public GameObject GroundMaterial;
+    public GameObject SkyMaterial;
     public GameObject Level;
     public GameObject Sky;
+    public GameObject SkyCeiling;
     public GameObject Ground;
 
     public Vector2 startingPoint;
+    public Vector2 skyStartingPoint;
     //Private variables
     GameObject[,] GroundArray;
+    GameObject[,] SkyArray;
     GameObject[] Events; //Stores random events such as wind and birds
     System.Random pseudoRandom;
     GameObject StartingPointObject;
@@ -101,7 +105,7 @@ public class LevelGenerator : MonoBehaviour {
     {
         Debug.Log("Generating ground");
         generateGround();
-        //generateSky();
+        generateSky();
         eventPopulation();
     }
 
@@ -157,9 +161,22 @@ public class LevelGenerator : MonoBehaviour {
     /// </summary>
     private void generateSky()
     {
+        skyStartingPoint.y -= GroundMaterial.GetComponent<SpriteRenderer>().bounds.size.y;
+        Vector3 genPos = skyStartingPoint;
+        for (int x = 0; x < LevelLength; x++)
+        {
+            Debug.Log("Generating tile " + x + ", 0" );
+            if(x != 0)
+            {
+                genPos.x += SkyMaterial.GetComponent<SpriteRenderer>().bounds.size.x;
+            }
+            SkyArray[x, 0] = (GameObject) Instantiate(SkyMaterial,genPos,Quaternion.identity, SkyCeiling.transform);
+
+        }
+
         //Skybox Generation
-        GameObject BGImage = GameObject.Find("Background Image");
-        SpriteRenderer image = BGImage.GetComponent<SpriteRenderer>();
+        //GameObject BGImage = GameObject.Find("Background Image");
+        //SpriteRenderer image = BGImage.GetComponent<SpriteRenderer>();
 
         //image.texture = 
 
