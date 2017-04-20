@@ -7,7 +7,7 @@ namespace Assets.Scripts
     {
         public float MaxSpeed;
         public float Acceleration;
-        public float Durability;
+        public float Durability = 1;
         public float Maneuverability;
         [Tooltip("Setting this doesn't affect anything, it's just used to show current speed in editor")]
         public float CurrentSpeed;

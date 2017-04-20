@@ -15,7 +15,6 @@ namespace Assets.Scripts
         {
             PullRadius = pullRadius;
             PullForce = pullForce;
-            Hitarea = hitArea;
             Speed = speed;
         }
 
@@ -54,6 +53,16 @@ namespace Assets.Scripts
             var currSize = GetComponent<SpriteRenderer>().sprite.rect.size;
             float scale = Size / currSize.x;
             transform.localScale = new Vector3(scale, scale, 1f);
+
+        }
+
+        public void SetCollider()
+        {
+            var currSize = GetComponentInChildren<BoxCollider2D>().size;
+            PlaneControls pc = Plane.GetComponent<PlaneControls>();
+            float collider_x = currSize.x * (1 / pc.Durability);
+            float collider_y = currSize.y * (1 / pc.Durability);
+            gameObject.GetComponentInChildren<BoxCollider2D>().size = new Vector2(collider_x, collider_y);
         }
     }
 }

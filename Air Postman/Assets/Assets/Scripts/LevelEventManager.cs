@@ -155,6 +155,14 @@ public class LevelEventManager : MonoBehaviour {
         GameObject whirlwind = Instantiate(WhirlwindEventBase, lastGenerationPoint, Quaternion.identity, sky.transform);
         int ScreenHeight = (int) (camera.orthographicSize * 2f);
         float WwHeight = localRandom.Next(ScreenLowestCoord+BottomScreenBuffer , ScreenLowestCoord + ScreenHeight);
-        whirlwind.GetComponent<WhirlwindEvent>().SetParameters(WwHeight, 25f, 1.5f, 5f);
+        //calculate pull force
+        //todo higher durability, more weight, less pull
+        float pull = Random.Range(8f,15f);
+        //calculate pull area
+
+        //calculate speed
+        //todo apply difficulty value
+        float speed = Random.Range(3f,10f);
+        whirlwind.GetComponent<WhirlwindEvent>().SetParameters(WwHeight, pull, 1.5f, speed);
     }
 }
