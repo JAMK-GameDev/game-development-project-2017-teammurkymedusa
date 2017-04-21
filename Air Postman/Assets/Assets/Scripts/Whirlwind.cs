@@ -58,11 +58,10 @@ namespace Assets.Scripts
 
         public void SetCollider()
         {
-            var currSize = GetComponentInChildren<BoxCollider2D>().size;
+            var currSize = GetComponentInChildren<CircleCollider2D>().radius;
             PlaneControls pc = Plane.GetComponent<PlaneControls>();
-            float collider_x = currSize.x * (1 / pc.Durability);
-            float collider_y = currSize.y * (1 / pc.Durability);
-            gameObject.GetComponentInChildren<BoxCollider2D>().size = new Vector2(collider_x, collider_y);
+            float new_size = currSize * (1 / pc.Durability);
+            gameObject.GetComponentInChildren<CircleCollider2D>().radius = new_size;
         }
     }
 }

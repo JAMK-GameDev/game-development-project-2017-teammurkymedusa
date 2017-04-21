@@ -13,7 +13,7 @@ public class LevelGenerator : MonoBehaviour {
     public int seed = 127326543;
 
     public int LandHeight = 1; // Adds to center of the map
-    public int SkyHeight; // Adds to center of the map
+    public int SkyHeight = 1;
 
     public int LevelHeight;
     public int LevelLength;
@@ -71,6 +71,7 @@ public class LevelGenerator : MonoBehaviour {
         BirdsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
         //pseudoRandom.Next();
         GroundArray = new GameObject[LevelLength,LandHeight];
+        SkyArray = new GameObject[LevelLength,SkyHeight];
 
         eventManager = gameObject.GetComponent<LevelEventManager>();
         generateMap();
@@ -171,7 +172,6 @@ public class LevelGenerator : MonoBehaviour {
                 genPos.x += SkyMaterial.GetComponent<SpriteRenderer>().bounds.size.x;
             }
             SkyArray[x, 0] = (GameObject) Instantiate(SkyMaterial,genPos,Quaternion.identity, SkyCeiling.transform);
-
         }
 
         //Skybox Generation
