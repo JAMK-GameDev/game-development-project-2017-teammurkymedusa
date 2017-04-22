@@ -16,9 +16,12 @@ public class TurbulenceEvent : MonoBehaviour {
         AreaOfEffect = new float[2];
 
         Direction = Vector3.down;
-        Magnitude = 5;
+        
 	}
-	
+    void SetMagnitude(float value)
+    {
+        Magnitude = value;
+    }
 	// Update is called once per frame
 	void Update () {
 		
@@ -38,7 +41,7 @@ public class TurbulenceEvent : MonoBehaviour {
             player = other;
             Debug.Log("Player entered Turbulence: " + gameObject.name);
             playerIn = true;
-            InvokeRepeating("flipDirection", 1f, 2f);
+            InvokeRepeating("flipDirection", 1f, 1f);
         }
     }
     private void OnTriggerStay2D(Collider2D other)

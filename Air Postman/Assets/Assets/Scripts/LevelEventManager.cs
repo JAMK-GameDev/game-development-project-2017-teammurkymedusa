@@ -21,6 +21,7 @@ public class LevelEventManager : MonoBehaviour {
     private int difficulty;
     private System.Random pseudoRandom;
     private System.Random localRandom;
+    private int _screenHeight;
     SpriteRenderer birdBounds;
     SpriteRenderer windBounds;
 
@@ -38,8 +39,11 @@ public class LevelEventManager : MonoBehaviour {
         windBounds = ProtoWind.GetComponent<SpriteRenderer>();
 
         lastGenerationPoint = new Vector3(minDistance, 0, 0);
-	}
-	
+    }
+	void Start()
+    {
+         _screenHeight = (int)(camera.orthographicSize * 2f);
+    }
 	// Update is called once per frame
 	void Update () {
 		
@@ -59,6 +63,26 @@ public class LevelEventManager : MonoBehaviour {
                     break;
                 case 1:
                     generateWhirlwind(i);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    public void PlaceEnviromentals(int windAmount, int turbulenceAmounts)
+    {
+        _screenHeight = (int)(camera.orthographicSize * 2f);
+        lastGenerationPoint = new Vector3(minDistance, 0, 0);
+        for (int i = 0; i < turbulenceAmounts + windAmount; i++)
+        {
+            int eventType = Random.Range(0, 2);
+            switch (eventType)
+            {
+                case 0:
+                    generateWind(i);
+                    break;
+                case 1:
+                    generateTurbulence(i);
                     break;
                 default:
                     break;
@@ -125,14 +149,28 @@ public class LevelEventManager : MonoBehaviour {
     /// <param name="Magnitude"></param>
     /// <param name="area"></param>
     /// <param name="genNum"></param>
-    private void generateWind(Vector3 force, float Magnitude, Vector2 area, int genNum)
+    private void generateWind(int genNum)
     {
-        lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
+        float length = Random.Range(30f, 80f);
+        lastGenerationPoint.x += minDistance + length + localRandom.Next(difficulty, 15);
+        lastGenerationPoint.y = ProtoWind.transform.position.y;
         GameObject wind = Instantiate(ProtoWind, lastGenerationPoint, Quaternion.identity, sky.transform);
+
+        //generate random direction (force vector). Magnitude will make it strong, so this will just have range of 0-1
+        float flipper = 1;
+        if(Random.Range(0, 2) == 1)
+        {
+            flipper = -1;
+        }
+        Vector2 forceVector = new Vector2(Random.value, Random.value * flipper);
+        //now lets generate strength of wind
+        forceVector *= Random.Range(5f, 10f);
+        //now generate area
+
+        Vector2 Area = new Vector2(length, ScreenLowestCoord + _screenHeight);
         //Set wind strength
-        wind.GetComponent<WindEvent>().ForceVector = force;
-        wind.GetComponent<WindEvent>().Magnitude = Magnitude;
-        wind.GetComponent<WindEvent>().AoE = area;
+        wind.GetComponent<WindEvent>().ForceVector = forceVector;
+        wind.GetComponent<WindEvent>().AoE = Area;
         wind.name = "WindEvent" + genNum.ToString();
         //wind.GetComponent<WindEvent>().OnSpawn();
     }
@@ -141,8 +179,9 @@ public class LevelEventManager : MonoBehaviour {
     {
         int ScreenHeight = (int)(camera.orthographicSize * 2f);
         lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
-        lastGenerationPoint.y = ProtoTurbulence.transform.position.y;
-        float turbulence = localRandom.Next(ScreenLowestCoord + BottomScreenBuffer, ScreenLowestCoord + ScreenHeight);
+        float Height = localRandom.Next(ScreenLowestCoord + BottomScreenBuffer, ScreenLowestCoord + ScreenHeight);
+        lastGenerationPoint.y = Height;
+        float Magnitude = Random.Range(2f, 6f);
 
         GameObject Turbulence = Instantiate(ProtoTurbulence, lastGenerationPoint, Quaternion.identity, sky.transform);
         Turbulence.name = "Turbulence" + genNum.ToString();

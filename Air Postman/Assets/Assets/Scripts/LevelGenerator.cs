@@ -192,6 +192,10 @@ public class LevelGenerator : MonoBehaviour {
             pseudoRandom.Next(BirdsAmount[0], BirdsAmount[1]), 
             pseudoRandom.Next(WindBurstsAmount[0], WindBurstsAmount[1])
             );
+        gameObject.GetComponent<LevelEventManager>().PlaceEnviromentals(
+            pseudoRandom.Next(1, 10),
+            pseudoRandom.Next(1,5)
+            );
     }
 
     public System.Random getPseudoRandom()

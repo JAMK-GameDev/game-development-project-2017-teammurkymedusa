@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 114333535002423100}
   - component: {fileID: 114187468940107510}
   - component: {fileID: 114113652249398384}
+  - component: {fileID: 114950211461430648}
+  - component: {fileID: 114455943381617638}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -50,12 +52,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1117063550623764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a319e20ce423d8842832cddfb7ad5f2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 60998a56251181a408ca7d4a3b04b030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProtoBird: {fileID: 0}
-  ProtoWind: {fileID: 0}
-  minDistance: 10
 --- !u!114 &114187468940107510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,9 +63,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1117063550623764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5057c746561c16244a2ac74bc3072add, type: 3}
+  m_Script: {fileID: 11500000, guid: 4278e735c32250548b703c8b45c16520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WindBurstsAmount: 
+  BirdsAmount: 050000000f000000
+  Difficulty: 1
+  seed: 127326543
+  LandHeight: 1
+  SkyHeight: 10
+  LevelHeight: 20
+  LevelLength: 50
+  GroundMaterial: {fileID: 0}
+  SkyMaterial: {fileID: 0}
+  Level: {fileID: 0}
+  Sky: {fileID: 0}
+  SkyCeiling: {fileID: 0}
+  Ground: {fileID: 0}
+  startingPoint: {x: 0, y: 7}
+  skyStartingPoint: {x: 0, y: 0}
 --- !u!114 &114333535002423100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,18 +90,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1117063550623764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6de50f87aa6771c4791118f762289ae2, type: 3}
+  m_Script: {fileID: 11500000, guid: f9ac8903a27352d41a34e95156b64153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WindBurstsAmount: 010000000f000000
-  BirdsAmount: 0100000028000000
-  Difficulty: 1
-  seed: 127326543
-  LandHeight: 1
-  SkyHeight: 0
-  LevelHeight: 0
-  LevelLength: 20
-  GroundMaterial: {fileID: 0}
-  Level: {fileID: 0}
-  Sky: {fileID: 0}
-  Ground: {fileID: 0}
+  BirdEventBase: {fileID: 0}
+  WhirlwindEventBase: {fileID: 0}
+  ProtoWind: {fileID: 0}
+  ProtoTurbulence: {fileID: 0}
+  minDistance: 10
+  ScreenLowestCoord: 3
+  BottomScreenBuffer: 5
+  camera: {fileID: 0}
+--- !u!114 &114455943381617638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117063550623764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c3740540094465ad022a36f5d7c1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathText: {fileID: 0}
+--- !u!114 &114950211461430648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117063550623764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40de730065257c942bca01d4700b4376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
