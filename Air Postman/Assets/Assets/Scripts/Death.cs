@@ -6,6 +6,7 @@ namespace Assets.Scripts
     public class Death : MonoBehaviour
     {
         public Text DeathText;
+        public Button BackButton;
 
         private void Start()
         {
@@ -14,6 +15,7 @@ namespace Assets.Scripts
 
         public void ActivateDeath() {
             DeathText.gameObject.SetActive(true);
+            BackButton.gameObject.SetActive(true);
             DeathText.GetComponent<Animator>().SetTrigger("Death");
         }
     }
