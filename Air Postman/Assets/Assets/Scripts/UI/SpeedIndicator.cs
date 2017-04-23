@@ -5,22 +5,21 @@ using UnityEngine;
 
 public class SpeedIndicator : MonoBehaviour
 {
-    public GameObject Aircraft;
     public GameObject SpeedIndicatorNeedle;
-    private Vector3 initialRotation;
+    private GameObject aircaft;
+    private float initialRotation;
     private float speed;
 
 	void Start()
     {
-        Aircraft = Aircraft ?? GameObject.FindGameObjectWithTag("Player");
-        SpeedIndicatorNeedle = SpeedIndicatorNeedle ?? GameObject.Find("SpeedIndicatorNeedle");
-        initialRotation = transform.eulerAngles;
+        aircaft = GameObject.FindGameObjectWithTag("Player");
+        initialRotation = 165.0f;
 	}
 	
 	void FixedUpdate()
     {
-        speed = Aircraft.GetComponent<PlaneControls>().GetSpeed();
-        Vector3 needleRotation = new Vector3(0.0f, 0.0f, speed - initialRotation.z);
+        speed = aircaft.GetComponent<PlaneControls>().GetSpeed() * aircaft.GetComponent<PlaneControls>().MaxSpeed * 10;
+        Vector3 needleRotation = new Vector3(0.0f, 0.0f, initialRotation - speed);
         SpeedIndicatorNeedle.transform.localEulerAngles = needleRotation;
 	}
 }
