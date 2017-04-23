@@ -97,6 +97,7 @@ MonoBehaviour:
   WhirlwindEventBase: {fileID: 0}
   ProtoWind: {fileID: 0}
   ProtoTurbulence: {fileID: 0}
+  ThunderEvent: {fileID: 0}
   minDistance: 10
   ScreenLowestCoord: 3
   BottomScreenBuffer: 5
@@ -125,3 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40de730065257c942bca01d4700b4376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Explosions:
+  - {fileID: 0}
+  - {fileID: 0}
+  PlaneDeathHandler: {fileID: 0}

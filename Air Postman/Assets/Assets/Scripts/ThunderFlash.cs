@@ -10,7 +10,7 @@ public class ThunderFlash : MonoBehaviour
     [Tooltip("Alert object to tell where thunder will hit")]
     public GameObject Alert;
 
-    public GameObject Cloud;
+    public GameObject Parent;
 
     private float timeAlive;
 
@@ -28,15 +28,15 @@ public class ThunderFlash : MonoBehaviour
     {
         timeAlive = 0.25f;
         dtFlashStrike = 0.0f;
-
+        Alert.SetActive(false);
         sr = GetComponent<SpriteRenderer>();
         sr.enabled = false;
-
-        _cloudLength = Cloud.GetComponent<SpriteRenderer>().bounds.size.x * 0.1f;
-
-        Alert.SetActive(false);
 	}
-	
+
+    public void Init(float length)
+    {
+        _cloudLength = length;
+    }
 	// Update is called once per frame
 	void Update()
     {
@@ -56,7 +56,7 @@ public class ThunderFlash : MonoBehaviour
                 Vector3 oldPos = transform.localPosition;
                 float new_X = Random.Range(0 - _cloudLength / 2, _cloudLength / 2);
                 oldPos.x = new_X;
-                print(_cloudLength);
+                //print(_cloudLength);
                 transform.localPosition = oldPos;
 
                 //put alert to new location
@@ -74,8 +74,8 @@ public class ThunderFlash : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Player") && sr.enabled)
         {
-            print("Flash collision!");
-            GameManager.instance.ActivateDeath(false);
+            //print("Flash collision!");
+            GameManager.instance.ActivatePlaneBoom();
         }
     }
 }

@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470024125268718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.6, y: 29.5, z: 0}
+  m_LocalPosition: {x: -109.9, y: 29.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4861297430901914}
@@ -146,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778796086888324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -24.02, z: -11}
+  m_LocalPosition: {x: 0, y: -24.02, z: 0}
   m_LocalScale: {x: 0.13227592, y: 0.4173131, z: 0.28168574}
   m_Children: []
   m_Father: {fileID: 4069895859688436}
@@ -158,13 +158,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1921215951765058}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 20, z: -0}
-  m_LocalScale: {x: 5.425068, y: 1, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 17.8, z: 0}
+  m_LocalScale: {x: 2.4198852, y: 2.0875342, z: 1}
   m_Children: []
   m_Father: {fileID: 4271229027919620}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &61500676980952134
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -235,6 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f11301f1629cc9459ee90e39f3ccf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cloud: {fileID: 1921215951765058}
+  DebugLength: 0
 --- !u!114 &114956744813537624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Frequency: 5
   Alert: {fileID: 1778796086888324}
-  Cloud: {fileID: 1416500184773118}
+  Parent: {fileID: 1470024125268718}
 --- !u!212 &212192974263745046
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -325,7 +327,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1921215951765058}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1
@@ -360,7 +362,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416500184773118}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1

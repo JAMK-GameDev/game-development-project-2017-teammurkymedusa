@@ -9,6 +9,7 @@ public class LevelEventManager : MonoBehaviour {
     public GameObject WhirlwindEventBase;
     public GameObject ProtoWind;
     public GameObject ProtoTurbulence;
+    public GameObject ThunderEvent;
 
     public int minDistance;
 
@@ -54,8 +55,8 @@ public class LevelEventManager : MonoBehaviour {
         for (int i = 0; i < birdAmount + windAmount; i++)
         {
             //System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-            int eventType = Random.Range(0,4);
-            Debug.Log("Randomized event type: " + eventType.ToString());
+            int eventType = Random.Range(0,3);
+            //Debug.Log("Randomized event type: " + eventType.ToString());
             switch (eventType)
             {
                 case 0:
@@ -63,6 +64,9 @@ public class LevelEventManager : MonoBehaviour {
                     break;
                 case 1:
                     generateWhirlwind(i);
+                    break;
+                case 2:
+                    generateThunder(i);
                     break;
                 default:
                     break;
@@ -96,7 +100,7 @@ public class LevelEventManager : MonoBehaviour {
         for (int i = 0; i < eventAmount; i++)
         {
             int eventType = rnd.Next(0, 3);
-            Debug.Log("Randomized event type: " + eventType.ToString());
+            //Debug.Log("Randomized event type: " + eventType.ToString());
             switch (eventType)
             {
                 case 0:
@@ -204,4 +208,17 @@ public class LevelEventManager : MonoBehaviour {
         float speed = Random.Range(3f,10f);
         whirlwind.GetComponent<WhirlwindEvent>().SetParameters(WwHeight, pull, 1.5f, speed);
     }
+
+    private void generateThunder(int genNum)
+    {
+        //generate some width for thunder storm
+        float length = Random.Range(50f, 100f);
+        lastGenerationPoint.x += minDistance + localRandom.Next(1,difficulty + 10) + length;
+        lastGenerationPoint.y = ThunderEvent.transform.position.y;
+        GameObject Thunder = Instantiate(ThunderEvent, lastGenerationPoint, Quaternion.identity, sky.transform);
+
+        Thunder.GetComponent<ThunderEvent>().SetLength(length);
+        Thunder.GetComponent<ThunderEvent>().Init();
+    }
+
 }

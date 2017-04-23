@@ -31,7 +31,7 @@ namespace Assets.Scripts.events
 
         private void SpawnBird()
         {
-            Debug.Log("Bird!!");
+            //Debug.Log("Bird!!");
             //let's calculate the position for a bird
             float CamHeight = camera.orthographicSize *2f;
             float CamWidth = CamHeight * camera.aspect;

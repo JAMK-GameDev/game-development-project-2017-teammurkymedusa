@@ -21,9 +21,13 @@ public class SpeedIndicator : MonoBehaviour
 	
 	void FixedUpdate()
     {
-        speed = Aircraft.GetComponent<PlaneControls>().GetSpeed();
-        Vector3 needleRotation = new Vector3(0.0f, 0.0f, initialRotation.z - speed * maxRotation);
-        Debug.Log(needleRotation + " ja " + initialRotation);
-        SpeedIndicatorNeedle.transform.localEulerAngles = needleRotation;
+        if (Aircraft)
+        {
+             speed = Aircraft.GetComponent<PlaneControls>().GetSpeed();
+             Vector3 needleRotation = new Vector3(0.0f, 0.0f, initialRotation.z - speed * maxRotation);
+             //Debug.Log(needleRotation + " ja " + initialRotation);
+             SpeedIndicatorNeedle.transform.localEulerAngles = needleRotation;
+        }
+
 	}
 }

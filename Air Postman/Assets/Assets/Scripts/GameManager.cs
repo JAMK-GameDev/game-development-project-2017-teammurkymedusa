@@ -4,7 +4,7 @@ using Assets.Scripts;
 
 public class GameManager : MonoBehaviour
 {
-
+    public AudioSource[] Explosions;
     public PlaneDeathHandler PlaneDeathHandler;
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     private Death Death;                       //Store a reference to our BoardManager which will set up the level.
@@ -40,23 +40,25 @@ public class GameManager : MonoBehaviour
 
 		player = GameObject.FindGameObjectWithTag ("Player");
 		persistantObject = GameObject.Find ("PersistantObject");
-		scManager = persistantObject.GetComponent<ScoreManager> ();
-		if (scManager.ScoreInterval != 0) {
-			scoreInterval = scManager.ScoreInterval;
-		}
+		//scManager = persistantObject.GetComponent<ScoreManager> ();
+		//if (scManager.ScoreInterval != 0) {
+			//scoreInterval = scManager.ScoreInterval;
+		//}
 
 		lastX = player.transform.position.x; // variable Initialization
     }
-	void FixedUpdate(){
+	void FixedUpdate()
+	{
+	    if (!player) return;
 		if ((player.transform.position.x - lastX) > scoreInterval) {
-			Debug.Log("Player's X pos: " + player.transform.position.x);
-			scManager.addTravelScore (); // We are not passing any parameters here because needed parameters are defined within the ScoreManager
+			//Debug.Log("Player's X pos: " + player.transform.position.x);
+			//scManager.addTravelScore (); // We are not passing any parameters here because needed parameters are defined within the ScoreManager
 			lastX = player.transform.position.x;
 		}
 	}
     public void ActivateDeath(bool destroyPlane)
     {
-		scManager.SetHighScore ();
+		//scManager.SetHighScore ();
         this.Death.ActivateDeath();
         if (destroyPlane && PlaneDeathHandler.gameObject)
         {
@@ -67,5 +69,18 @@ public class GameManager : MonoBehaviour
     public void ActivatePlaneBoom()
     {
         this.PlaneDeathHandler.BlownUpPlane();
+        ExplosionSounds();
+    }
+    public void ExplosionSounds()
+    {
+        int startExplosion = Random.Range(0, Explosions.Length);
+        Explosions[startExplosion].Play();
+        StartCoroutine(SecondBoom(1 - startExplosion));
+    }
+
+    IEnumerator SecondBoom(int other)
+    {
+        yield return new WaitForSeconds(.35f);
+        Explosions[other].Play();
     }
 }

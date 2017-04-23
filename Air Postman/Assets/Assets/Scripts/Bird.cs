@@ -21,7 +21,7 @@ namespace Assets.Scripts
 
         void OnCollisionEnter2D(Collision2D col)
         {
-            Debug.Log("Collision with bird!");
+            //Debug.Log("Collision with bird!");
             if (col.gameObject.tag.Equals("Player"))
             {
                 //gameObject.SetActive(false);

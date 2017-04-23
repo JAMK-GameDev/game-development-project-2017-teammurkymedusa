@@ -39,7 +39,7 @@ public class TurbulenceEvent : MonoBehaviour {
         if (other.gameObject.tag.Equals("Player"))
         {
             player = other;
-            Debug.Log("Player entered Turbulence: " + gameObject.name);
+            //Debug.Log("Player entered Turbulence: " + gameObject.name);
             playerIn = true;
             InvokeRepeating("flipDirection", 1f, 1f);
         }
@@ -48,7 +48,7 @@ public class TurbulenceEvent : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            Debug.Log("Player is in Turbulence: " + gameObject.name);
+            //Debug.Log("Player is in Turbulence: " + gameObject.name);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -56,7 +56,7 @@ public class TurbulenceEvent : MonoBehaviour {
         if (other.gameObject.tag.Equals("Player"))
         {
             player = null;
-            Debug.Log("Player exited Turbulence: " + gameObject.name);
+            //Debug.Log("Player exited Turbulence: " + gameObject.name);
             playerIn = false;
             CancelInvoke("flipDirection");
         }

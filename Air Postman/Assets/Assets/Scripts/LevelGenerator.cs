@@ -104,7 +104,7 @@ public class LevelGenerator : MonoBehaviour {
 
     private void generateMap()
     {
-        Debug.Log("Generating ground");
+        //Debug.Log("Generating ground");
         generateGround();
         generateSky();
         eventPopulation();
@@ -130,7 +130,7 @@ public class LevelGenerator : MonoBehaviour {
 
                 for (int y = 0; y <= LevelHeight; y++)
                 {
-                    Debug.Log("Generating tile " + x + "," + y);
+                    //Debug.Log("Generating tile " + x + "," + y);
                     if (y != 0)
                     {
                         startingPoint.y -= GroundMaterial.GetComponent<SpriteRenderer>().bounds.size.y;
@@ -146,7 +146,7 @@ public class LevelGenerator : MonoBehaviour {
             Vector3 genPos = startingPoint;
             for (int x = 0; x < LevelLength; x++)
             {
-                Debug.Log("Generating tile " + x + ", 0" );
+                //Debug.Log("Generating tile " + x + ", 0" );
                 if(x != 0)
                 {
                     genPos.x += GroundMaterial.GetComponent<SpriteRenderer>().bounds.size.x;
@@ -166,7 +166,7 @@ public class LevelGenerator : MonoBehaviour {
         Vector3 genPos = skyStartingPoint;
         for (int x = 0; x < LevelLength; x++)
         {
-            Debug.Log("Generating tile " + x + ", 0" );
+            //Debug.Log("Generating tile " + x + ", 0" );
             if(x != 0)
             {
                 genPos.x += SkyMaterial.GetComponent<SpriteRenderer>().bounds.size.x;

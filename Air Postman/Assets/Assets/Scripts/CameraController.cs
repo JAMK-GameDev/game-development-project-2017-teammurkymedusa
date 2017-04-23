@@ -36,6 +36,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(!Plane) return;
         Vector3 oldVec = Plane.gameObject.transform.position;
         float range;
         float fixedMin = MinPos;

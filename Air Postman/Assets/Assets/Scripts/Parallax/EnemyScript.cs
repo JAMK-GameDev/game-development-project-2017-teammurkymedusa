@@ -46,7 +46,7 @@ public class EnemyScript : MonoBehaviour
 	        //Is object out of camera? If so, we destroy it
 	        if (!rendererComponent.IsVisibleFrom(Camera.main))
 	        {
-	            Debug.Log("Destroying " + gameObject.name);
+	            //Debug.Log("Destroying " + gameObject.name);
 	            Destroy(gameObject);
 	        }
 	    }

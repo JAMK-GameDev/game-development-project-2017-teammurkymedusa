@@ -43,10 +43,10 @@ namespace Assets.Scripts
 
         public void Death()
         {
-            Debug.Log("Collision with Whirlwind!");
+            //Debug.Log("Collision with Whirlwind!");
             //gameObject.SetActive(false);
             Destroy(Plane);
-            GameManager.instance.ActivateDeath(false);
+            GameManager.instance.ActivatePlaneBoom();
         }
         public void SetSize(float Size)
         {
