@@ -2,8 +2,10 @@
 using System.Collections;
 using Assets.Scripts;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
+    public PlaneDeathHandler PlaneDeathHandler;
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     private Death Death;                       //Store a reference to our BoardManager which will set up the level.
     private int level = 3;                                  //Current level number, expressed in game as "Day 1".
@@ -31,8 +33,17 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void ActivateDeath()
+    public void ActivateDeath(bool destroyPlane)
     {
         this.Death.ActivateDeath();
+        if (destroyPlane && PlaneDeathHandler.gameObject)
+        {
+            Destroy(PlaneDeathHandler.gameObject);
+        }
+    }
+
+    public void ActivatePlaneBoom()
+    {
+        this.PlaneDeathHandler.BlownUpPlane();
     }
 }

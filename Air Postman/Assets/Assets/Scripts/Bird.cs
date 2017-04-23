@@ -25,11 +25,11 @@ namespace Assets.Scripts
             if (col.gameObject.tag.Equals("Player"))
             {
                 //gameObject.SetActive(false);
-                Destroy(col.gameObject);
+                //Destroy(col.gameObject);
                 int startExplosion = Random.Range(0, Explosions.Length);
                 Explosions[startExplosion].Play();
                 StartCoroutine(SecondBoom(1 - startExplosion));
-                GameManager.instance.ActivateDeath();
+                GameManager.instance.ActivatePlaneBoom();
             }
         }
 
