@@ -8,6 +8,13 @@ public class GameManager : MonoBehaviour {
     private Death Death;                       //Store a reference to our BoardManager which will set up the level.
     private int level = 3;                                  //Current level number, expressed in game as "Day 1".
 
+	private GameObject player;
+	private GameObject persistantObject;
+	private ScoreManager scManager;
+
+	private float scoreInterval = 10; // How often we score player (Distance)
+	private float lastX; // Player's last X position
+
     //Awake is always called before any Start functions
     void Awake()
     {
@@ -29,10 +36,26 @@ public class GameManager : MonoBehaviour {
         //Get a component reference to the attached BoardManager script
         Death = GetComponent<Death>();
 
+		player = GameObject.FindGameObjectWithTag ("Player");
+		persistantObject = GameObject.Find ("PersistantObject");
+		scManager = persistantObject.GetComponent<ScoreManager> ();
+		if (scManager.ScoreInterval != 0) {
+			scoreInterval = scManager.ScoreInterval;
+		}
+
+		lastX = player.transform.position.x; // variable Initialization
     }
 
+	void FixedUpdate(){
+		if ((player.transform.position.x - lastX) > scoreInterval) {
+			Debug.Log("Player's X pos: " + player.transform.position.x);
+			scManager.addTravelScore (); // We are not passing any parameters here because needed parameters are defined within the ScoreManager
+			lastX = player.transform.position.x;
+		}
+	}
     public void ActivateDeath()
     {
+		scManager.SetHighScore ();
         this.Death.ActivateDeath();
     }
 }

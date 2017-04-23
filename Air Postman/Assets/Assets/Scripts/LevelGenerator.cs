@@ -13,19 +13,23 @@ public class LevelGenerator : MonoBehaviour {
     public int seed = 127326543;
 
     public int LandHeight = 1; // Adds to center of the map
-    public int SkyHeight; // Adds to center of the map
+    public int SkyHeight = 1;
 
     public int LevelHeight;
     public int LevelLength;
 
     public GameObject GroundMaterial;
+    public GameObject SkyMaterial;
     public GameObject Level;
     public GameObject Sky;
+    public GameObject SkyCeiling;
     public GameObject Ground;
 
     public Vector2 startingPoint;
+    public Vector2 skyStartingPoint;
     //Private variables
     GameObject[,] GroundArray;
+    GameObject[,] SkyArray;
     GameObject[] Events; //Stores random events such as wind and birds
     System.Random pseudoRandom;
     GameObject StartingPointObject;
@@ -67,6 +71,7 @@ public class LevelGenerator : MonoBehaviour {
         BirdsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
         //pseudoRandom.Next();
         GroundArray = new GameObject[LevelLength,LandHeight];
+        SkyArray = new GameObject[LevelLength,SkyHeight];
 
         eventManager = gameObject.GetComponent<LevelEventManager>();
         generateMap();
@@ -101,7 +106,7 @@ public class LevelGenerator : MonoBehaviour {
     {
         Debug.Log("Generating ground");
         generateGround();
-        //generateSky();
+        generateSky();
         eventPopulation();
     }
 
@@ -157,9 +162,21 @@ public class LevelGenerator : MonoBehaviour {
     /// </summary>
     private void generateSky()
     {
+        skyStartingPoint.y -= GroundMaterial.GetComponent<SpriteRenderer>().bounds.size.y;
+        Vector3 genPos = skyStartingPoint;
+        for (int x = 0; x < LevelLength; x++)
+        {
+            Debug.Log("Generating tile " + x + ", 0" );
+            if(x != 0)
+            {
+                genPos.x += SkyMaterial.GetComponent<SpriteRenderer>().bounds.size.x;
+            }
+            SkyArray[x, 0] = (GameObject) Instantiate(SkyMaterial,genPos,Quaternion.identity, SkyCeiling.transform);
+        }
+
         //Skybox Generation
-        GameObject BGImage = GameObject.Find("Background Image");
-        SpriteRenderer image = BGImage.GetComponent<SpriteRenderer>();
+        //GameObject BGImage = GameObject.Find("Background Image");
+        //SpriteRenderer image = BGImage.GetComponent<SpriteRenderer>();
 
         //image.texture = 
 
@@ -174,6 +191,10 @@ public class LevelGenerator : MonoBehaviour {
         gameObject.GetComponent<LevelEventManager>().PlaceEvents(
             pseudoRandom.Next(BirdsAmount[0], BirdsAmount[1]), 
             pseudoRandom.Next(WindBurstsAmount[0], WindBurstsAmount[1])
+            );
+        gameObject.GetComponent<LevelEventManager>().PlaceEnviromentals(
+            pseudoRandom.Next(1, 10),
+            pseudoRandom.Next(1,5)
             );
     }
 

@@ -67,5 +67,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0}
-  Magnitude: 0
+  Magnitude: 5
   AreaOfEffect: []

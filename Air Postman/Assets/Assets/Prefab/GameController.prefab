@@ -67,18 +67,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WindBurstsAmount: 
-  BirdsAmount: 
+  BirdsAmount: 0000000000000000
   Difficulty: 1
   seed: 127326543
   LandHeight: 1
-  SkyHeight: 10
+  SkyHeight: 50
   LevelHeight: 20
   LevelLength: 50
   GroundMaterial: {fileID: 0}
+  SkyMaterial: {fileID: 0}
   Level: {fileID: 0}
   Sky: {fileID: 0}
+  SkyCeiling: {fileID: 0}
   Ground: {fileID: 0}
-  startingPoint: {x: 0, y: 7}
+  startingPoint: {x: 0, y: 14.2}
+  skyStartingPoint: {x: 0, y: 60.2}
 --- !u!114 &114333535002423100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathText: {fileID: 0}
+  BackButton: {fileID: 0}
 --- !u!114 &114950211461430648
 MonoBehaviour:
   m_ObjectHideFlags: 1

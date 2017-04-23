@@ -15,6 +15,15 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        // Assign defaults for objects if they are null ( = set to nothing in editor)
+        Cam = Cam ?? GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        Plane = Plane ?? GameObject.FindGameObjectWithTag("Player").GetComponent<PlaneControls>();
+
+        if (Plane == null)
+        {
+            Plane = GameObject.FindGameObjectWithTag("Player").GetComponent<PlaneControls>();
+        }
+
         Vector3 oldVec = Cam.transform.position;
         oldVec.x = StartPos;
         Cam.transform.position = oldVec;

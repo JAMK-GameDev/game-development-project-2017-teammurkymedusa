@@ -51,6 +51,7 @@ namespace Assets.Scripts.events
             {
                Whirlwind.GetComponent<Whirlwind>().SetSize(Size);
             }
+            Whirlwind.GetComponent<Whirlwind>().SetCollider();
         }
     }
 }
