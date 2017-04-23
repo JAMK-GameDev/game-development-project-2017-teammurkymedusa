@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class SpeedIndicator : MonoBehaviour
 {
-    public GameObject Aircraft;
     public GameObject SpeedIndicatorNeedle;
+
     public float maxRotation;
     private Vector3 initialRotation;
+    private GameObject Aircraft;
     private float speed;
 
 	void Start()

@@ -18,6 +18,7 @@ namespace Assets.Scripts
 
         public void ActivateBackToMenu()
         {
+			Destroy (GameObject.Find ("GameController"));
             SceneManager.LoadScene(this.level);
         }
     }
