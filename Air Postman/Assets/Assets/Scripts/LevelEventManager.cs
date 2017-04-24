@@ -16,6 +16,14 @@ public class LevelEventManager : MonoBehaviour {
     public int ScreenLowestCoord;
     public int BottomScreenBuffer;
 
+    public int[] BirdSpeedLimits = new int[2];
+    public int[] TurbulenceMagnitudeLimits = new int[2];
+    public int[] WhirlwindSpeedLimits = new int[2];
+    public int[] WhirlwindPullLimits = new int[2];
+    public int[] WindForceLimits = new int[2];
+    public int[] WindLengthLimits = new int[2];
+    public int[] ThunderLengthLimits = new int[2];
+
     public Camera camera;
     //Private variables
     private GameObject sky;
@@ -49,7 +57,7 @@ public class LevelEventManager : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void PlaceEvents(int birdAmount, int windAmount)
+    public void PlaceEvents(int birdAmount, int windAmount, int thunderAmount)
     {
 
         for (int i = 0; i < birdAmount + windAmount; i++)
@@ -65,12 +73,14 @@ public class LevelEventManager : MonoBehaviour {
                 case 1:
                     generateWhirlwind(i);
                     break;
-                case 2:
-                    generateThunder(i);
-                    break;
                 default:
                     break;
             }
+        }
+        lastGenerationPoint = new Vector3(minDistance, 0, 0f);
+        for (int i = 0; i < thunderAmount; i++)
+        {
+            generateThunder(i);
         }
     }
     public void PlaceEnviromentals(int windAmount, int turbulenceAmounts)
@@ -143,7 +153,7 @@ public class LevelEventManager : MonoBehaviour {
         else
             bird.name = "Bird" + genNum;
         //Set bird speed and dynamite
-        bird.GetComponent<BirdEvent>().SetParameters(camera, 7.5f, BirdHeight, 1);
+        bird.GetComponent<BirdEvent>().SetParameters(camera, Random.Range(BirdSpeedLimits[0], BirdSpeedLimits[1]), BirdHeight, 1);
 
     }
     /// <summary>
@@ -155,7 +165,7 @@ public class LevelEventManager : MonoBehaviour {
     /// <param name="genNum"></param>
     private void generateWind(int genNum)
     {
-        float length = Random.Range(30f, 80f);
+        float length = Random.Range(WindLengthLimits[0], WindLengthLimits[1]);
         lastGenerationPoint.x += minDistance + length + localRandom.Next(difficulty, 15);
         lastGenerationPoint.y = ProtoWind.transform.position.y;
         GameObject wind = Instantiate(ProtoWind, lastGenerationPoint, Quaternion.identity, sky.transform);
@@ -168,7 +178,7 @@ public class LevelEventManager : MonoBehaviour {
         }
         Vector2 forceVector = new Vector2(Random.value, Random.value * flipper);
         //now lets generate strength of wind
-        forceVector *= Random.Range(5f, 10f);
+        forceVector *= Random.Range(WindForceLimits[0], WindForceLimits[1]);
         //now generate area
 
         Vector2 Area = new Vector2(length, ScreenLowestCoord + _screenHeight);
@@ -185,7 +195,7 @@ public class LevelEventManager : MonoBehaviour {
         lastGenerationPoint.x += minDistance + localRandom.Next(difficulty, 15);
         float Height = localRandom.Next(ScreenLowestCoord + BottomScreenBuffer, ScreenLowestCoord + ScreenHeight);
         lastGenerationPoint.y = Height;
-        float Magnitude = Random.Range(2f, 6f);
+        float Magnitude = Random.Range(TurbulenceMagnitudeLimits[0], TurbulenceMagnitudeLimits[1]);
 
         GameObject Turbulence = Instantiate(ProtoTurbulence, lastGenerationPoint, Quaternion.identity, sky.transform);
         Turbulence.name = "Turbulence" + genNum.ToString();
@@ -200,19 +210,19 @@ public class LevelEventManager : MonoBehaviour {
         float WwHeight = localRandom.Next(ScreenLowestCoord+BottomScreenBuffer , ScreenLowestCoord + ScreenHeight);
         //calculate pull force
         //todo higher durability, more weight, less pull
-        float pull = Random.Range(8f,15f);
+        float pull = Random.Range(WhirlwindPullLimits[0], WhirlwindPullLimits[1]);
         //calculate pull area
 
         //calculate speed
         //todo apply difficulty value
-        float speed = Random.Range(3f,10f);
+        float speed = Random.Range(WhirlwindSpeedLimits[0], WhirlwindSpeedLimits[1]);
         whirlwind.GetComponent<WhirlwindEvent>().SetParameters(WwHeight, pull, 1.5f, speed);
     }
 
     private void generateThunder(int genNum)
     {
         //generate some width for thunder storm
-        float length = Random.Range(50f, 100f);
+        float length = Random.Range(ThunderLengthLimits[0], ThunderLengthLimits[1]);
         lastGenerationPoint.x += minDistance + localRandom.Next(1,difficulty + 10) + length;
         lastGenerationPoint.y = ThunderEvent.transform.position.y;
         GameObject Thunder = Instantiate(ThunderEvent, lastGenerationPoint, Quaternion.identity, sky.transform);

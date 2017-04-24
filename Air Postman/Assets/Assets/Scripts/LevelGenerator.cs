@@ -5,7 +5,10 @@ public class LevelGenerator : MonoBehaviour {
 
     //These are going to be controlled by difficulty modifier
     public int[] WindBurstsAmount; // 0th index is min and 1st index is max
+    public int[] TurbulenceAmount; // 0th index is min and 1st index is max
     public int[] BirdsAmount; // 0th index is min and 1st index is max
+    public int[] ThunderAmount; // 0th index is min and 1st index is max
+    public int[] WhirlwindAmount; // 0th index is min and 1st index is max
 
     [Range(1,10)]
     public int Difficulty = 1; // Controls occurence of the obstacles
@@ -59,7 +62,7 @@ public class LevelGenerator : MonoBehaviour {
             param2 = difficultyMod;
             param1 = Difficulty;
         }
-        //WindBurstsAmount[0] = pseudoRandom.Next(Difficulty, difficultyMod);
+       /* //WindBurstsAmount[0] = pseudoRandom.Next(Difficulty, difficultyMod);
         //WindBurstsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
         WindBurstsAmount[0] = pseudoRandom.Next(param1, param2);
         WindBurstsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
@@ -68,7 +71,7 @@ public class LevelGenerator : MonoBehaviour {
         //BirdsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
 
         BirdsAmount[0] = pseudoRandom.Next(param1, param2);
-        BirdsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);
+        BirdsAmount[1] = pseudoRandom.Next(difficultyMod, LevelLength * 3);*/
         //pseudoRandom.Next();
         GroundArray = new GameObject[LevelLength,LandHeight];
         SkyArray = new GameObject[LevelLength,SkyHeight];
@@ -190,11 +193,12 @@ public class LevelGenerator : MonoBehaviour {
     {
         gameObject.GetComponent<LevelEventManager>().PlaceEvents(
             pseudoRandom.Next(BirdsAmount[0], BirdsAmount[1]), 
-            pseudoRandom.Next(WindBurstsAmount[0], WindBurstsAmount[1])
+            pseudoRandom.Next(WhirlwindAmount[0], WhirlwindAmount[1]),
+            pseudoRandom.Next(ThunderAmount[0], ThunderAmount[1])
             );
         gameObject.GetComponent<LevelEventManager>().PlaceEnviromentals(
-            pseudoRandom.Next(1, 10),
-            pseudoRandom.Next(1,5)
+            pseudoRandom.Next(WindBurstsAmount[0], WindBurstsAmount[1]),
+            pseudoRandom.Next(TurbulenceAmount[0], TurbulenceAmount[1])
             );
     }
 

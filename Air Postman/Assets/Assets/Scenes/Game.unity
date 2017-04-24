@@ -1222,12 +1222,12 @@ Prefab:
     - target: {fileID: 224425893039317554, guid: 9e08f9e27c992ef41bf3b11d4dd9ed8f,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224353061769394044, guid: 9e08f9e27c992ef41bf3b11d4dd9ed8f,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e08f9e27c992ef41bf3b11d4dd9ed8f, type: 2}
@@ -1424,6 +1424,66 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: ThunderAmount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindAmount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindForceLimits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: BirdSpeedLimits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindBurstsAmount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: TurbulenceAmount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindLengthLimits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindPullLimits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: ThunderLengthLimits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindSpeedLimits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindMagnitudeLimits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: TurbulenceMagnitudeLimits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4546736755950172, guid: 2ae03bce546d2954d98496dcb49de4ca, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1549,6 +1609,126 @@ Prefab:
     - target: {fileID: 1346249236693580, guid: 2ae03bce546d2954d98496dcb49de4ca, type: 2}
       propertyPath: m_Name
       value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindBurstsAmount.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindBurstsAmount.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: TurbulenceAmount.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: TurbulenceAmount.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: BirdsAmount.Array.data[0]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: BirdsAmount.Array.data[1]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: ThunderAmount.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: ThunderAmount.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindAmount.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindAmount.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindForceLimits.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindForceLimits.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindLengthLimits.Array.data[0]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WindLengthLimits.Array.data[1]
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindSpeedLimits.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindSpeedLimits.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindPullLimits.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: WhirlwindPullLimits.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: ThunderLengthLimits.Array.data[0]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: ThunderLengthLimits.Array.data[1]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: BirdSpeedLimits.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: BirdSpeedLimits.Array.data[1]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: TurbulenceMagnitudeLimits.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: TurbulenceMagnitudeLimits.Array.data[1]
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ae03bce546d2954d98496dcb49de4ca, type: 2}
