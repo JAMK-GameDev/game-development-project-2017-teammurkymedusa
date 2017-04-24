@@ -1244,6 +1244,41 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 82622122434409074, guid: 746677c56905bf245b9cc1ad68df1c54,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82093628234883486, guid: 746677c56905bf245b9cc1ad68df1c54,
+        type: 2}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82622122434409074, guid: 746677c56905bf245b9cc1ad68df1c54,
+        type: 2}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82538319550701240, guid: 746677c56905bf245b9cc1ad68df1c54,
+        type: 2}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82930892116481446, guid: 746677c56905bf245b9cc1ad68df1c54,
+        type: 2}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82429821562981088, guid: 746677c56905bf245b9cc1ad68df1c54,
+        type: 2}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82861992394662754, guid: 746677c56905bf245b9cc1ad68df1c54,
+        type: 2}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 746677c56905bf245b9cc1ad68df1c54, type: 2}
   m_IsPrefabParent: 0
@@ -2187,7 +2222,7 @@ Prefab:
     - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
       propertyPath: TurbulenceAmount.Array.data[1]
-      value: 15
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
@@ -2207,7 +2242,7 @@ Prefab:
     - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
       propertyPath: ThunderAmount.Array.data[1]
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114157198770117398, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
@@ -2247,7 +2282,7 @@ Prefab:
     - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
       propertyPath: WhirlwindSpeedLimits.Array.data[1]
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
@@ -2272,12 +2307,12 @@ Prefab:
     - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
       propertyPath: BirdSpeedLimits.Array.data[0]
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
       propertyPath: BirdSpeedLimits.Array.data[1]
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
@@ -2287,7 +2322,7 @@ Prefab:
     - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
       propertyPath: TurbulenceMagnitudeLimits.Array.data[1]
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114727201662234192, guid: 2ae03bce546d2954d98496dcb49de4ca,
         type: 2}
@@ -2308,6 +2343,11 @@ Prefab:
         type: 2}
       propertyPath: levelEndX
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764705731290166, guid: 2ae03bce546d2954d98496dcb49de4ca,
+        type: 2}
+      propertyPath: minDistance
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ae03bce546d2954d98496dcb49de4ca, type: 2}
