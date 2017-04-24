@@ -9,21 +9,21 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1117063550623764}
+  m_RootGameObject: {fileID: 1171861277760602}
   m_IsPrefabParent: 1
---- !u!1 &1117063550623764
+--- !u!1 &1171861277760602
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4572135761302736}
-  - component: {fileID: 114333535002423100}
-  - component: {fileID: 114187468940107510}
-  - component: {fileID: 114113652249398384}
-  - component: {fileID: 114950211461430648}
-  - component: {fileID: 114455943381617638}
+  - component: {fileID: 4399036992550148}
+  - component: {fileID: 114355316496018298}
+  - component: {fileID: 114987377401212880}
+  - component: {fileID: 114614410653990924}
+  - component: {fileID: 114906363407119956}
+  - component: {fileID: 114159416946012876}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -31,12 +31,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4572135761302736
+--- !u!4 &4399036992550148
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1117063550623764}
+  m_GameObject: {fileID: 1171861277760602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -44,23 +44,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114113652249398384
+--- !u!114 &114159416946012876
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1117063550623764}
+  m_GameObject: {fileID: 1171861277760602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c3740540094465ad022a36f5d7c1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathText: {fileID: 0}
+  BackButton: {fileID: 0}
+--- !u!114 &114355316496018298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171861277760602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ac8903a27352d41a34e95156b64153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BirdEventBase: {fileID: 0}
+  WhirlwindEventBase: {fileID: 0}
+  ProtoWind: {fileID: 0}
+  ProtoTurbulence: {fileID: 0}
+  ThunderEvent: {fileID: 0}
+  minDistance: 10
+  ScreenLowestCoord: 3
+  BottomScreenBuffer: 5
+  camera: {fileID: 0}
+--- !u!114 &114614410653990924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171861277760602}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60998a56251181a408ca7d4a3b04b030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114187468940107510
+--- !u!114 &114906363407119956
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1117063550623764}
+  m_GameObject: {fileID: 1171861277760602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40de730065257c942bca01d4700b4376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Explosions:
+  - {fileID: 0}
+  - {fileID: 0}
+  PlaneDeathHandler: {fileID: 0}
+  ScoreText: {fileID: 0}
+--- !u!114 &114987377401212880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171861277760602}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4278e735c32250548b703c8b45c16520, type: 3}
@@ -82,51 +131,3 @@ MonoBehaviour:
   Ground: {fileID: 0}
   startingPoint: {x: 0, y: 14.2}
   skyStartingPoint: {x: 0, y: 60.2}
---- !u!114 &114333535002423100
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1117063550623764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ac8903a27352d41a34e95156b64153, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BirdEventBase: {fileID: 0}
-  WhirlwindEventBase: {fileID: 0}
-  ProtoWind: {fileID: 0}
-  ProtoTurbulence: {fileID: 0}
-  ThunderEvent: {fileID: 0}
-  minDistance: 10
-  ScreenLowestCoord: 3
-  BottomScreenBuffer: 5
-  camera: {fileID: 0}
---- !u!114 &114455943381617638
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1117063550623764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65c3740540094465ad022a36f5d7c1b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeathText: {fileID: 0}
-  BackButton: {fileID: 0}
---- !u!114 &114950211461430648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1117063550623764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40de730065257c942bca01d4700b4376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Explosions:
-  - {fileID: 0}
-  - {fileID: 0}
-  PlaneDeathHandler: {fileID: 0}
