@@ -45,7 +45,7 @@ namespace Assets.Scripts
         {
             //Debug.Log("Collision with Whirlwind!");
             //gameObject.SetActive(false);
-            Destroy(Plane);
+            //Destroy(Plane);
             GameManager.instance.ActivatePlaneBoom();
         }
         public void SetSize(float Size)

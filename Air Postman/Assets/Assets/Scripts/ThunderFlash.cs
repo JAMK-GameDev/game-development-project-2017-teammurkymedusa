@@ -12,6 +12,8 @@ public class ThunderFlash : MonoBehaviour
 
     public GameObject Parent;
 
+    public GameObject[] ThunderSounds;
+
     private float timeAlive;
 
     // Time since last strike
@@ -22,6 +24,7 @@ public class ThunderFlash : MonoBehaviour
     private float _cloudLength;
 
     private bool ThunderEdgeTrigger = false;
+    private AudioSource ThunderSound;
 
 	// Use this for initialization
 	void Start()
@@ -36,6 +39,8 @@ public class ThunderFlash : MonoBehaviour
     public void Init(float length)
     {
         _cloudLength = length;
+        int sound = Random.Range(0, ThunderSounds.Length);
+        ThunderSound = Instantiate(ThunderSounds[sound]).GetComponent<AudioSource>();
     }
 	// Update is called once per frame
 	void Update()
@@ -45,6 +50,7 @@ public class ThunderFlash : MonoBehaviour
             Alert.SetActive(false);
             dtFlashStrike = 0.0f;
             sr.enabled = true;
+            ThunderSound.Play();
             if (!ThunderEdgeTrigger) ThunderEdgeTrigger = true;
         }
         else if (dtFlashStrike > timeAlive)
