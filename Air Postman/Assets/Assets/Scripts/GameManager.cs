@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Scripts;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public AudioSource[] Explosions;
     public PlaneDeathHandler PlaneDeathHandler;
+    public Text ScoreText;
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     private Death Death;                       //Store a reference to our BoardManager which will set up the level.
     private int level = 3;                                  //Current level number, expressed in game as "Day 1".
@@ -40,10 +42,10 @@ public class GameManager : MonoBehaviour
 
 		player = GameObject.FindGameObjectWithTag ("Player");
 		persistantObject = GameObject.Find ("PersistantObject");
-		//scManager = persistantObject.GetComponent<ScoreManager> ();
-		//if (scManager.ScoreInterval != 0) {
-			//scoreInterval = scManager.ScoreInterval;
-		//}
+		scManager = persistantObject.GetComponent<ScoreManager> ();
+		if (scManager.ScoreInterval != 0) {
+			scoreInterval = scManager.ScoreInterval;
+		}
 
 		lastX = player.transform.position.x; // variable Initialization
     }
@@ -52,13 +54,14 @@ public class GameManager : MonoBehaviour
 	    if (!player) return;
 		if ((player.transform.position.x - lastX) > scoreInterval) {
 			//Debug.Log("Player's X pos: " + player.transform.position.x);
-			//scManager.addTravelScore (); // We are not passing any parameters here because needed parameters are defined within the ScoreManager
+			scManager.addTravelScore (); // We are not passing any parameters here because needed parameters are defined within the ScoreManager
 			lastX = player.transform.position.x;
+            ScoreText.text = scManager.CurrentScore.ToString();
 		}
 	}
     public void ActivateDeath(bool destroyPlane)
     {
-		//scManager.SetHighScore ();
+        if(scManager) scManager.SetHighScore ();
         this.Death.ActivateDeath();
         if (destroyPlane && PlaneDeathHandler.gameObject)
         {

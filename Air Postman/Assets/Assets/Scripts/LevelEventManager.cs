@@ -60,7 +60,7 @@ public class LevelEventManager : MonoBehaviour {
             switch (eventType)
             {
                 case 0:
-                    generateBird(false, 3f, i);
+                   generateBird(false, 3f, i);
                     break;
                 case 1:
                     generateWhirlwind(i);
@@ -76,7 +76,7 @@ public class LevelEventManager : MonoBehaviour {
     public void PlaceEnviromentals(int windAmount, int turbulenceAmounts)
     {
         _screenHeight = (int)(camera.orthographicSize * 2f);
-        lastGenerationPoint = new Vector3(minDistance, 0, 0);
+        lastGenerationPoint = new Vector3(minDistance, 0, 0f);
         for (int i = 0; i < turbulenceAmounts + windAmount; i++)
         {
             int eventType = Random.Range(0, 2);

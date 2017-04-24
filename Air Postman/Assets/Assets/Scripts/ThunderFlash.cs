@@ -6,11 +6,15 @@ public class ThunderFlash : MonoBehaviour
 {
     [Tooltip("Time between flashes")]
     public float Frequency;
+    [Tooltip("Buffer Time between flashes")]
+    public float ThunderMinBuffer = 1f;
 
     [Tooltip("Alert object to tell where thunder will hit")]
     public GameObject Alert;
 
     public GameObject Parent;
+
+    public GameObject[] ThunderSounds;
 
     private float timeAlive;
 
@@ -22,6 +26,8 @@ public class ThunderFlash : MonoBehaviour
     private float _cloudLength;
 
     private bool ThunderEdgeTrigger = false;
+    private AudioSource ThunderSound;
+    private bool _continueUpdate = true;
 
 	// Use this for initialization
 	void Start()
@@ -36,22 +42,29 @@ public class ThunderFlash : MonoBehaviour
     public void Init(float length)
     {
         _cloudLength = length;
+        int sound = Random.Range(0, ThunderSounds.Length);
+        ThunderSound = Instantiate(ThunderSounds[sound]).GetComponent<AudioSource>();
     }
 	// Update is called once per frame
 	void Update()
-    {
+	{
+	    if (!_continueUpdate) return;
 		if (dtFlashStrike > Frequency)
         {
             Alert.SetActive(false);
             dtFlashStrike = 0.0f;
             sr.enabled = true;
+            ThunderSound.Play();
             if (!ThunderEdgeTrigger) ThunderEdgeTrigger = true;
         }
-        else if (dtFlashStrike > timeAlive)
+        else if (dtFlashStrike > timeAlive && sr.enabled)
         {
             sr.enabled = false;
+            StartCoroutine(Wait());
             if(ThunderEdgeTrigger)
             {
+                //if (dtFlashStrike < ThunderMinBuffer) return;
+                //dtFlashStrike = 0.0f;
                 //calculate new position
                 Vector3 oldPos = transform.localPosition;
                 float new_X = Random.Range(0 - _cloudLength / 2, _cloudLength / 2);
@@ -69,7 +82,12 @@ public class ThunderFlash : MonoBehaviour
         }
         dtFlashStrike += Time.deltaTime;
 	}
-
+    IEnumerator Wait()
+    {
+        _continueUpdate = false;
+        yield return new WaitForSeconds(ThunderMinBuffer);
+        _continueUpdate = true;
+    }
     void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && sr.enabled)
