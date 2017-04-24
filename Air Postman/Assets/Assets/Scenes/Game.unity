@@ -1002,12 +1002,12 @@ Prefab:
     - target: {fileID: 224416778332007614, guid: 9e08f9e27c992ef41bf3b11d4dd9ed8f,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224361355684538686, guid: 9e08f9e27c992ef41bf3b11d4dd9ed8f,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e08f9e27c992ef41bf3b11d4dd9ed8f, type: 2}
@@ -1186,11 +1186,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114950211461430648, guid: 4ec0609653c5ec843914825c029cdb63,
-        type: 2}
-      propertyPath: Explosions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4572135761302736, guid: 4ec0609653c5ec843914825c029cdb63, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1223,6 +1218,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114950211461430648, guid: 4ec0609653c5ec843914825c029cdb63,
+        type: 2}
+      propertyPath: Explosions.Array.data[0]
+      value: 
+      objectReference: {fileID: 1763403731}
+    - target: {fileID: 114950211461430648, guid: 4ec0609653c5ec843914825c029cdb63,
+        type: 2}
+      propertyPath: Explosions.Array.data[1]
+      value: 
+      objectReference: {fileID: 766690973}
     - target: {fileID: 114950211461430648, guid: 4ec0609653c5ec843914825c029cdb63,
         type: 2}
       propertyPath: PlaneDeathHandler
@@ -1298,16 +1303,6 @@ Prefab:
       propertyPath: BackButton
       value: 
       objectReference: {fileID: 476308412}
-    - target: {fileID: 114950211461430648, guid: 4ec0609653c5ec843914825c029cdb63,
-        type: 2}
-      propertyPath: Explosions.Array.data[0]
-      value: 
-      objectReference: {fileID: 1763403731}
-    - target: {fileID: 114950211461430648, guid: 4ec0609653c5ec843914825c029cdb63,
-        type: 2}
-      propertyPath: Explosions.Array.data[1]
-      value: 
-      objectReference: {fileID: 766690973}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ec0609653c5ec843914825c029cdb63, type: 2}
   m_IsPrefabParent: 0
