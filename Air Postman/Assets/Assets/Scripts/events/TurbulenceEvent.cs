@@ -8,6 +8,8 @@ public class TurbulenceEvent : MonoBehaviour {
     public float Magnitude;
     public float[] AreaOfEffect;
 
+    public GameObject TurbuWarning;
+
     private bool playerIn;
     private GameObject player;
     //public float Pitch;
@@ -50,12 +52,14 @@ public class TurbulenceEvent : MonoBehaviour {
         if (other.gameObject.tag.Equals("Player"))
         {
             //Debug.Log("Player is in Turbulence: " + gameObject.name);
+            if(!TurbuWarning.activeSelf) TurbuWarning.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            if(TurbuWarning.activeSelf) TurbuWarning.SetActive(false);
             player = null;
             //Debug.Log("Player exited Turbulence: " + gameObject.name);
             playerIn = false;

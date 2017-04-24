@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
 		}
 		if (player.transform.position.x > levelEndX) {
 			LevelVictory ();
-
 		}
 	}
     public void ActivateDeath(bool destroyPlane)
@@ -96,7 +95,7 @@ public class GameManager : MonoBehaviour
     }
 
 	void LevelVictory(){
-		VictoryCanvas.enabled = true;
+		VictoryCanvas.gameObject.SetActive(true);
 		VictoryScoreText.text = "With score of " + scManager.CurrentScore.ToString();
 		player.SetActive (false);
 	}
