@@ -9,7 +9,7 @@ public class TurbulenceEvent : MonoBehaviour {
     public float[] AreaOfEffect;
 
     private bool playerIn;
-    private Collider2D player;
+    private GameObject player;
     //public float Pitch;
 	// Use this for initialization
 	void Start () {
@@ -29,16 +29,17 @@ public class TurbulenceEvent : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if (!player) return;
         if (playerIn)
         {
-            player.attachedRigidbody.AddForce(Direction * Magnitude);
+            player.GetComponent<Rigidbody2D>().AddForce(Direction * Magnitude);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            player = other;
+            player = other.gameObject;
             //Debug.Log("Player entered Turbulence: " + gameObject.name);
             playerIn = true;
             InvokeRepeating("flipDirection", 1f, 1f);
