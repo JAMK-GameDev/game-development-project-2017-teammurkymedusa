@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
 	private float scoreInterval = 10; // How often we score player (Distance)
 	private float lastX; // Player's last X position
 
+	public Canvas VictoryCanvas;
+	public Text VictoryScoreText;
+	public float levelEndX; // This is where victory screen is shown
     //Awake is always called before any Start functions
     void Awake()
     {
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		lastX = player.transform.position.x; // variable Initialization
+		levelEndX = 10 * gameObject.GetComponent<LevelGenerator>().LevelLength;
     }
 	void FixedUpdate()
 	{
@@ -57,6 +61,10 @@ public class GameManager : MonoBehaviour
 			scManager.addTravelScore (); // We are not passing any parameters here because needed parameters are defined within the ScoreManager
 			lastX = player.transform.position.x;
             ScoreText.text = scManager.CurrentScore.ToString();
+		}
+		if (player.transform.position.x > levelEndX) {
+			LevelVictory ();
+
 		}
 	}
     public void ActivateDeath(bool destroyPlane)
@@ -86,4 +94,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(.35f);
         Explosions[other].Play();
     }
+
+	void LevelVictory(){
+		VictoryCanvas.enabled = true;
+		VictoryScoreText.text = "With score of " + scManager.CurrentScore.ToString();
+		player.SetActive (false);
+	}
 }
