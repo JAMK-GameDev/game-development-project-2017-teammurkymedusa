@@ -5,18 +5,18 @@ namespace Assets.Scripts
 {
     public class Death : MonoBehaviour
     {
-        public Text DeathText;
-        public Button BackButton;
+		public Canvas DeathUI;
+		public Text DeathText;
 
-        private void Start()
-        {
-            DeathText.gameObject.SetActive(false);
-        }
+		private void Start()
+		{
+			DeathUI.gameObject.SetActive(false);
+		}
 
-        public void ActivateDeath() {
-            DeathText.gameObject.SetActive(true);
-            BackButton.gameObject.SetActive(true);
-            DeathText.GetComponent<Animator>().SetTrigger("Death");
-        }
+		public void ActivateDeath() {
+			DeathUI.gameObject.SetActive(true);
+			//BackButton.gameObject.SetActive(true);
+			DeathText.GetComponent<Animator>().SetTrigger("Death");
+		}
     }
 }
