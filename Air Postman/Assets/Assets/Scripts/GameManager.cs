@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 	}
     public void ActivateDeath(bool destroyPlane)
     {
-		scManager.SetHighScore ();
+        if(scManager) scManager.SetHighScore ();
         this.Death.ActivateDeath();
         if (destroyPlane && PlaneDeathHandler.gameObject)
         {
