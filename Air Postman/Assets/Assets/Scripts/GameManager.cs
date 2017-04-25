@@ -68,7 +68,10 @@ public class GameManager : MonoBehaviour
 	}
     public void ActivateDeath(bool destroyPlane)
     {
-        if(scManager) scManager.SetHighScore ();
+		if (scManager) {
+			scManager.SetHighScore ();
+			scManager.CurrentScore = 0;
+		}
         this.Death.ActivateDeath();
         if (destroyPlane && PlaneDeathHandler.gameObject)
         {
@@ -97,6 +100,7 @@ public class GameManager : MonoBehaviour
 	void LevelVictory(){
 		VictoryCanvas.gameObject.SetActive(true);
 		VictoryScoreText.text = "With score of " + scManager.CurrentScore.ToString();
+		scManager.CurrentScore = 0;
 		player.SetActive (false);
 	}
 }
